@@ -20,15 +20,20 @@ import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import langchain from "./tech/langchain.png"
+import openai from "./tech/openai.png"
+import nextjs from "./tech/nextjs.png"
+import postgres from "./tech/postgres.png"
+import python from "./tech/python.png"
+import fastapi from "./tech/fastapi.png"
+import huggingface from "./tech/huggingface.jpeg"
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
+import sun from "./company/sun.png"
+import kshetriai from "./kshetriai.png"
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+import productivity from "./productivity.png"
+import portfoliobuilder from "./portfolio_builder.png"
+import foodlet from "./foodlet.png"
 
 export {
   logo,
@@ -52,11 +57,17 @@ export {
   tailwind,
   typescript,
   threejs,
-  meta,
-  shopify,
-  starbucks,
-  tesla,
-  carrent,
-  jobit,
-  tripguide,
+  langchain,
+  openai,
+  postgres,
+  python,
+  nextjs,
+  fastapi,
+  huggingface,
+
+  sun,
+  kshetriai,
+  productivity,
+  portfoliobuilder,
+  foodlet
 };
