@@ -48,7 +48,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             className='text-white text-[18px] font-bold cursor-pointer flex items-center'
           >
-            Rishab Chetri
+            Rishab Chhetri
             <span className='sm:block hidden ml-2 text-sm font-normal bg-white/10 px-3 py-1 rounded-full'>
               Full Stack Developer
             </span>
