@@ -67,7 +67,7 @@ const Contact = () => {
     <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden ">
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className="flex-[0.75] bg-gradient-to-b from-gray-900 to-gray-800 p-8 rounded-2xl shadow-2xl shadow-blue-800"
+        className="flex-[0.75] bg-gradient-to-b from-gray-900 to-gray-800 p-8 shadow-2xl shadow-blue-800"
       >
         <p className="text-teal-400 text-sm uppercase tracking-wider">Get in touch</p>
         <h3 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">
@@ -87,7 +87,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className="bg-gray-700 py-4 px-6 placeholder:text-gray-400 text-white rounded-lg outline-none border-2 border-transparent focus:border-teal-400 font-medium transition-colors duration-200"
+              className="bg-gray-700 py-4 px-6 placeholder:text-gray-400 text-white outline-none border-2 border-transparent focus:border-teal-400 font-medium transition-colors duration-200"
             />
           </label>
           <label className="flex flex-col">
@@ -98,7 +98,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              className="bg-gray-700 py-4 px-6 placeholder:text-gray-400 text-white rounded-lg outline-none border-2 border-transparent focus:border-teal-400 font-medium transition-colors duration-200"
+              className="bg-gray-700 py-4 px-6 placeholder:text-gray-400 text-white outline-none border-2 border-transparent focus:border-teal-400 font-medium transition-colors duration-200"
             />
           </label>
           <label className="flex flex-col">
@@ -109,13 +109,13 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder="What you want to say?"
-              className="bg-gray-700 py-4 px-6 placeholder:text-gray-400 text-white rounded-lg outline-none border-2 border-transparent focus:border-teal-400 font-medium transition-colors duration-200"
+              className="bg-gray-700 py-4 px-6 placeholder:text-gray-400 text-white outline-none border-2 border-transparent focus:border-teal-400 font-medium transition-colors duration-200"
             />
           </label>
 
           <button
             type="submit"
-            className="bg-purple-700 hover:bg-teal-500 py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-lg transition-colors duration-200 hover:shadow-teal-500/50"
+            className="bg-purple-700 hover:bg-teal-500 py-3 px-8 outline-none w-fit text-white font-bold shadow-lg transition-colors duration-200 hover:shadow-teal-500/50"
           >
             {loading ? "Sending..." : "Send"}
           </button>

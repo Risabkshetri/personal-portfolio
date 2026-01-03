@@ -1,4 +1,3 @@
-import React from "react";
 import { Tilt } from 'react-tilt';
 import { motion } from "framer-motion";
 
@@ -10,7 +9,7 @@ const ServiceCard = ({ index, title, icon }) => (
   <Tilt className='xs:w-[250px] w-full'>
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className='w-full p-[1px] rounded-[20px] shadow-card'
+      className='w-full p-[1px] shadow-card'
       style={{
         background: 'linear-gradient(45deg, rgba(80, 200, 255, 0.3), rgba(255, 100, 255, 0.3))',
         backdropFilter: 'blur(4px)',
@@ -22,7 +21,7 @@ const ServiceCard = ({ index, title, icon }) => (
           scale: 1,
           speed: 450,
         }}
-        className='rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
+        className='py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
         style={{
           background: 'rgba(25, 25, 35, 0.9)',
           boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
@@ -76,7 +75,7 @@ const About = () => {
           letterSpacing: '0.2px'
         }}
       >
-        I am Risab, a PORN stack developer (PostgreSQL, OpenAI, React, Next.js) and the founder of KshetriAI, where I build AI-powered solutions to solve real-world problems. With expertise in full-stack web development, I specialize in creating intelligent applications using AI integration. My journey includes internships, hackathons, and hands-on projects in AI, web, and mobile development. I'm passionate about entrepreneurship and constantly innovating to improve education, business automation, and user-centric solutions. With a strong foundation in Next.js, LangChain, FastAPI, and MongoDB, I strive to push boundaries in AI-driven software development while helping businesses grow.
+        I'm the founder of Zobique, an AI career copilot designed to bring clarity to career navigation. Starting as a full-stack developer (MERN + PERN), I've evolved to sit at the intersection of tech, product, and business, focusing on turning complex problems into simple, scalable solutions. My passion lies in using AI and automation to remove guesswork from careers, helping students and professionals move faster toward their goals. With expertise in LLM integration, cloud infrastructure, and product strategy, I build systems that solve real struggles for job seekers. At Zobique, we're not just building tools; we're building the future of career navigation.
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10 justify-center'>
