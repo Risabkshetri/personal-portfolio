@@ -17,7 +17,13 @@ const StarWrapper = (Component, idName) =>
           &nbsp;
         </span>
 
+        {/* Top Horizontal Grid Line */}
+        <div className='absolute top-0 left-0 w-full h-[1px] bg-white/10' />
+
         <Component />
+        
+        {/* Bottom Horizontal Grid Line */}
+        <div className='absolute bottom-0 left-0 w-full h-[1px] bg-white/10' />
       </motion.section>
     );
   };

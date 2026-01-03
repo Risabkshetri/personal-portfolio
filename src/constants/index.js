@@ -11,6 +11,7 @@ import {
   git,
   docker,
   kshetriai,
+  zobique,
   sun,
   productivity,
   foodlet,
@@ -49,19 +50,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Developer",
+    title: "Full-Stack",
     icon: web,
   },
   {
-    title: "AI Developer",
+    title: "AI & Automation",
     icon: mobile,
   },
   {
-    title: "Backend Developer",
+    title: "Cloud & Infra",
     icon: backend,
   },
   {
-    title: "Tech Entrepreneur",
+    title: "Product & Strategy",
     icon: creator,
   },
 ];
@@ -131,7 +132,7 @@ const experiences = [
     company_name: "Self-Learning & Projects",
     icon: sun,
     iconBg: "#383E56",
-    date: "2022 - Present",
+    date: "Jan 2022 - Dec 2023",
     points: [
       "Gained expertise in MERN and PORN stacks to build AI-powered systems and scalable web applications.",
       "Explored AI integrations with OpenAI, LangChain, and FastAPI to enhance system capabilities.",
@@ -144,7 +145,7 @@ const experiences = [
     company_name: "KshetriAI",
     icon: kshetriai,
     iconBg: "#E6DEDD",
-    date: "Jan 2024 - Present",
+    date: "Jan 2024 - Aug 2025",
     points: [
       "Leading KshetriAI, a startup dedicated to developing AI-powered solutions and innovative products.",
       "Building and scaling intelligent web applications using Next.js, PostgreSQL, OpenAI, and LangChain.",
@@ -153,16 +154,15 @@ const experiences = [
     ],
   },
   {
-    title: "Developing AI Product: Student Recommendation RAG",
-    company_name: "KshetriAI",
-    icon: kshetriai,
+    title: "Founder & CEO: Zobique - AI Career Agent",
+    company_name: "Zobique",
+    icon: zobique,
     iconBg: "#383E56",
-    date: "2025 - Present",
+    date: "Jan 2025 - Present",
     points: [
-      "Designing and implementing a RAG-based AI recommendation system for personalized student career guidance.",
-      "Leveraging LLMs, vector databases, and AI-driven data processing to provide accurate insights.",
-      "Optimizing AI models to deliver efficient, real-time recommendations for career paths and skill development.",
-      "Testing, refining, and scaling the product to enhance usability and impact in the education sector.",
+      "Building Zobique as an AI-powered career guidance platform that delivers personalized insights for students and early professionals.",
+      "Using LLMs, vector databases, and skill-gap analytics to provide real-time learning paths, job matches, and actionable recommendations.",
+      "Continuously testing, refining, and scaling the platform to improve performance, usability, and impact across education and career ecosystems.",
     ],
   },
 ];

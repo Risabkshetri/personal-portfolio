@@ -20,7 +20,7 @@ const ExperienceCard = ({ experience }) => {
         color: "#fff",
         boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
         borderBottom: "4px solid red", // Subtle border
-        borderRadius: "12px", // Rounded corners
+        borderRadius: "0px", // Sharp corners
         padding: "2rem",
       }}
       contentArrowStyle={{ 
@@ -30,7 +30,8 @@ const ExperienceCard = ({ experience }) => {
       iconStyle={{ 
         background: "linear-gradient(145deg, #2d2d3a, #1a1a24)", // Gradient background
         boxShadow: "0 0 0 4px rgba(255, 255, 255, 0.05)", // Subtle glow
-        color: "#fff" 
+        color: "#fff",
+        borderRadius: "0px" // Sharp corners
       }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>

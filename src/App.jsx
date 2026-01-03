@@ -2,7 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import { useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 
-import { About, Contact, Experience, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
+import { About, Contact, Experience, Hero, Navbar, Tech, Works, StarsCanvas, Footer } from "./components";
 
 const App = () => {
   useEffect(() => {
@@ -11,6 +11,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className='relative z-0 bg-primary'>
+        {/* Grid Lines */}
+        <div className="fixed inset-0 pointer-events-none max-w-7xl mx-auto z-50 border-x border-white/10"></div>
+        
         <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
           <Navbar />
           <Hero />
@@ -22,6 +25,7 @@ const App = () => {
         <div className='relative z-0'>
           <Contact />
           <StarsCanvas />
+          <Footer />
         </div>
       </div>
     </BrowserRouter>

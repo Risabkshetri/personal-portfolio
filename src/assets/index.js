@@ -29,7 +29,8 @@ import fastapi from "./tech/fastapi.png"
 import huggingface from "./tech/huggingface.jpeg"
 
 import sun from "./company/sun.png"
-import kshetriai from "./kshetriai.png"
+import kshetriai from "./company/kshetriai.png"
+import zobique from "./company/zobique.jpg"
 
 import productivity from "./productivity.png"
 import portfoliobuilder from "./portfolio_builder.png"
@@ -67,6 +68,7 @@ export {
 
   sun,
   kshetriai,
+  zobique,
   productivity,
   portfoliobuilder,
   foodlet

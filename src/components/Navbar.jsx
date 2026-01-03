@@ -29,13 +29,13 @@ const Navbar = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`${styles.paddingX} w-full fixed top-0 z-20 transition-all duration-300 ease-in-out ${
+      className={`w-full fixed top-0 z-20 transition-all duration-300 ease-in-out border-b border-white/10 ${
         scrolled 
-          ? 'backdrop-blur-lg bg-primary/80 shadow-lg' 
+          ? 'backdrop-blur-lg bg-primary/70 shadow-lg' 
           : 'bg-transparent'
       }`}
     >
-      <div className='w-full flex justify-between items-center max-w-7xl mx-auto py-5'>
+      <div className={`w-full flex justify-between items-center max-w-7xl mx-auto py-5 border-x border-white/10 ${styles.paddingX}`}>
         <Link
           to='/'
           className='flex items-center gap-2'
@@ -49,7 +49,7 @@ const Navbar = () => {
             className='text-white text-[18px] font-bold cursor-pointer flex items-center'
           >
             Rishab Chhetri
-            <span className='sm:block hidden ml-2 text-sm font-normal bg-white/10 px-3 py-1 rounded-full'>
+            <span className='sm:block hidden ml-2 text-sm font-normal bg-white/10 px-3 py-1'>
               Full Stack Developer
             </span>
           </motion.p>
