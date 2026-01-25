@@ -3,22 +3,8 @@ import { styles } from "../styles";
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-screen mx-auto overflow-hidden">
-      {/* Side Darkening Overlays for "Outside" effect */}
-      <div className="absolute inset-0 pointer-events-none hidden xl:block">
-         {/* Left Side - Darker & Bluer */}
-         <div className="absolute top-0 left-0 h-full w-[calc(50vw-40rem)] bg-[#02030c]/10 border-r border-white/5 backdrop-blur-sm z-10">
-            <div className="absolute inset-0 bg-blue-900/5 mix-blend-overlay"></div>
-         </div>
-         {/* Right Side - Darker & Bluer */}
-         <div className="absolute top-0 right-0 h-full w-[calc(50vw-40rem)] bg-[#02030c]/10 border-l border-white/5 backdrop-blur-sm z-10">
-            <div className="absolute inset-0 bg-blue-900/5 mix-blend-overlay"></div>
-         </div>
-      </div>
+    <section className="relative w-full h-screen mx-auto">
 
-      {/* Geometric Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-      
       <div
         className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
       >
@@ -32,36 +18,25 @@ const Hero = () => {
           <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-[#915eff]/50" />
           <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-[#915eff]/50" />
 
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915eff] font-bold relative">
-              Rishab
+          <h1 className={`${styles.heroHeadText} text-black-100`}>
+            Rishab <span className="text-[#915eff]">Chhetri</span>
+            <br className="sm:block hidden" />
+            <span className="text-[30px] sm:text-[40px] text-secondary pl-2">
+              Founder & CEO of Zobique
             </span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100 max-w-lg`}>
-            I develop AI Products, user <br className="sm:block hidden" />
-            interfaces and web applications
+          <p className={`${styles.heroSubText} mt-2 text-black-200 max-w-lg text-[16px] leading-[24px]`}>
+            Rishab Chhetri is the founder and CEO of Zobique, an AI-powered career intelligence platform focused on job readiness, skill-gap analysis, and personalized career roadmaps for students and early professionals in India and global markets.
           </p>
-          
+
           {/* Tech Decoration */}
           <div className="mt-8 flex gap-2">
-             <div className="h-1 w-12 bg-[#915eff]" />
-             <div className="h-1 w-4 bg-teal-400" />
-             <div className="h-1 w-2 bg-white" />
+            <div className="h-1 w-12 bg-[#915eff]" />
+            <div className="h-1 w-4 bg-teal-400" />
+            <div className="h-1 w-2 bg-white" />
           </div>
         </div>
       </div>
-
-      {/* Floating Geometric Shapes */}
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-1/3 right-[10%] w-32 h-32 border border-white/10 rounded-full border-dashed"
-      />
-      <motion.div 
-        animate={{ rotate: -360 }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute top-1/3 right-[10%] w-48 h-48 border border-[#915eff]/20 rounded-full"
-      />
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">

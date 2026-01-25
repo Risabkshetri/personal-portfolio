@@ -1,31 +1,40 @@
-import { BrowserRouter } from "react-router-dom";
-import { useEffect } from 'react';
-import emailjs from '@emailjs/browser';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { About, Contact, Experience, Hero, Navbar, Tech, Works, StarsCanvas, Footer } from "./components";
+import { About, Experience, Hero, Navbar, Works, Footer, ZobiquePage, HeroBackground } from "./components";
 
 const App = () => {
-  useEffect(() => {
-    emailjs.init(import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY);
-  }, []);
   return (
     <BrowserRouter>
-      <div className='relative z-0 bg-primary'>
-        {/* Grid Lines */}
-        <div className="fixed inset-0 pointer-events-none max-w-7xl mx-auto z-50 border-x border-white/10"></div>
-        
-        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
+      <div className='relative min-h-screen bg-primary overflow-hidden'>
+        <HeroBackground />
+        <div className='relative z-10'>
           <Navbar />
-          <Hero />
-        </div>
-        <About />
-        <Experience />
-        <Tech />
-        <Works />
-        <div className='relative z-0'>
-          <Contact />
-          <StarsCanvas />
-          <Footer />
+          <div className='pt-16'>
+            <Routes>
+              <Route path="/" element={
+                <div className='relative'>
+                  <Hero />
+                </div>
+              } />
+              <Route path="/about" element={
+                <>
+                  <About />
+                </>
+              } />
+              <Route path="/experience" element={
+                <>
+                  <Experience />
+                </>
+              } />
+              <Route path="/work" element={
+                <>
+                  <ZobiquePage />
+                  <Works />
+                </>
+              } />
+            </Routes>
+            <Footer />
+          </div>
         </div>
       </div>
     </BrowserRouter>

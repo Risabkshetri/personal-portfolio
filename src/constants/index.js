@@ -3,26 +3,12 @@ import {
   backend,
   creator,
   web,
-  javascript,
-  typescript,
-  reactjs,
-  nodejs,
-  mongodb,
-  git,
-  docker,
   kshetriai,
   zobique,
   sun,
   productivity,
   foodlet,
   portfoliobuilder,
-  postgres,
-  openai,
-  nextjs,
-  fastapi,
-  python,
-  langchain,
-  huggingface,
 } from "../assets";
 
 export const navLinks = [
@@ -69,60 +55,20 @@ const services = [
 
 const technologies = [
   {
-    name: "JavaScript",
-    icon: javascript,
+    name: "React",
+    icon: web,
   },
   {
-    name: "TypeScript",
-    icon: typescript,
+    name: "Node",
+    icon: backend,
   },
   {
-    name: "Python",
-    icon: python,
+    name: "AI",
+    icon: mobile,
   },
   {
-    name: "Fastapi",
-    icon: fastapi,
-  },
-  {
-    name: "React JS",
-    icon: reactjs,
-  },
-  {
-    name: "Next JS",
-    icon: nextjs,
-  },
-  {
-    name: "Langchain",
-    icon: langchain,
-  },
-  {
-    name: "Huggingface",
-    icon: huggingface,
-  },
-  {
-    name: "OpenAI",
-    icon: openai,
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "Postgresql",
-    icon: postgres
-  },
-  {
-    name: "git",
-    icon: git,
-  },
-  {
-    name: "docker",
-    icon: docker,
+    name: "Product",
+    icon: creator,
   },
 ];
 
