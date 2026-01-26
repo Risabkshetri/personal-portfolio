@@ -16,7 +16,7 @@ const About = () => {
       </div>
 
       <p className='mt-6 text-[15px] xs:text-[16px] sm:text-[17px] md:text-[18px] text-secondary max-w-3xl leading-[1.8] font-light'>
-        Rishab Chhetri is an Indian AI entrepreneur and AI Engineer, best known as the founder of Zobique—an AI career intelligence platform designed to bridge the gap between education and employability.
+        Rishab Chhetri is an Indian AI entrepreneur and software Engineer, best known as the founder of Zobique—an AI career intelligence platform designed to bridge the gap between education and employability.
         <br /><br />
         With a philosophy rooted in "outcomes over certificates" and "readiness over resumes," I am building Zobique to help students and early professionals navigate their careers with clarity. My work sits at the intersection of AI, product strategy, and education, using Large Language Models (LLMs) and vector databases to create personalized learning paths and job matching systems.
         <br /><br />
