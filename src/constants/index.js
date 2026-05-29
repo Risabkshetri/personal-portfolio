@@ -12,174 +12,109 @@ import {
 } from "../assets";
 
 export const navLinks = [
-  {
-    id: "",
-    title: "Home",
-  },
-  {
-    id: "about",
-    title: "About",
-  },
-  {
-    id: "works",
-    title: "Projects",
-  },
-  {
-    id: "experience",
-    title: "Experience",
-  },
-  {
-    id: "contact",
-    title: "Contact",
-  },
+  { id: "", title: "Home" },
+  { id: "about", title: "About" },
+  { id: "work", title: "Work" },
+  { id: "skills", title: "Skills" },
+  { id: "contact", title: "Contact" },
 ];
 
-const services = [
-  {
-    title: "Full-Stack",
-    icon: web,
-  },
-  {
-    title: "AI & Automation",
-    icon: mobile,
-  },
-  {
-    title: "Cloud & Infra",
-    icon: backend,
-  },
-  {
-    title: "Product & Strategy",
-    icon: creator,
-  },
+export const credibilityMetrics = [
+  { title: "Founder", value: "Zobique" },
+  { title: "Ecosystems", value: "NCS Integration" },
+  { title: "Adoption", value: "University Pilots" },
+  { title: "Engineering", value: "Full-Stack Systems Built" }
 ];
 
-const technologies = [
+export const whatIBuild = [
   {
-    name: "React",
-    icon: web,
+    category: "AI Systems",
+    items: ["AI Agents", "RAG Systems", "LLM Applications", "AI Copilots", "Workflow Automation"]
   },
   {
-    name: "Node",
-    icon: backend,
+    category: "Product Engineering",
+    items: ["SaaS Platforms", "Multi-Tenant Applications", "APIs", "Dashboards", "Scalable Backends"]
   },
   {
-    name: "AI",
-    icon: mobile,
-  },
-  {
-    name: "Product",
-    icon: creator,
-  },
+    category: "Career Technology",
+    items: ["Job Matching Systems", "Assessment Platforms", "Hiring Infrastructure", "Employability Analytics"]
+  }
 ];
 
-const experiences = [
+export const selectedWorks = [
   {
-    title: "2 Years of Learning: MERN & PORN Stack with AI",
-    company_name: "Self-Learning & Projects",
-    icon: sun,
-    iconBg: "#383E56",
-    date: "Jan 2022 - Dec 2023",
-    points: [
-      "Gained expertise in MERN and PORN stacks to build AI-powered systems and scalable web applications.",
-      "Explored AI integrations with OpenAI, LangChain, and FastAPI to enhance system capabilities.",
-      "Worked on multiple projects involving AI-driven automation, APIs, and dynamic user experiences.",
-      "Developed a strong foundation in full-stack development, database optimization, and AI-driven applications.",
-    ],
+    name: "Zobique",
+    problem: "Students lack clarity on employability and necessary skills to bridge the gap between their education and industry requirements.",
+    solution: "An AI-powered career intelligence platform providing personalized learning paths, job matching, and real-time feedback.",
+    techSummary: "LLMs, Vector Databases, Python, React, scalable backend architecture.",
+    impact: "Deployed as university infrastructure, delivering clear job readiness analysis to early professionals.",
+    logo: "https://res.cloudinary.com/dufaxdxsj/image/upload/v1780077187/favicon_joiv4u.jpg",
+    link: "https://www.zobique.com"
   },
   {
-    title: "Founder & AI Innovator: Building KshetriAI",
-    company_name: "KshetriAI",
-    icon: kshetriai,
-    iconBg: "#E6DEDD",
-    date: "Jan 2024 - Aug 2025",
-    points: [
-      "Leading KshetriAI, a startup dedicated to developing AI-powered solutions and innovative products.",
-      "Building and scaling intelligent web applications using Next.js, PostgreSQL, OpenAI, and LangChain.",
-      "Driving AI research and development to create smart automation tools and real-world AI applications.",
-      "Managing business operations, collaborating with clients, and strategizing product innovation.",
-    ],
+    name: "NCS Integration",
+    problem: "National ecosystem required robust intelligence to support career services at scale.",
+    solution: "Integrated AI-driven intelligence services to the national employment ecosystem.",
+    techSummary: "API Development, AI orchestration, Service integrations, High-availability backend.",
+    impact: "Facilitated service adoption at a national level, scaling career insights to a diverse user base.",
+    logo: "https://res.cloudinary.com/dufaxdxsj/image/upload/v1777100591/ncs-small-logo_ucxlog.png",
+    link: "https://www.ncs.zobique.com"
   },
   {
-    title: "Founder & CEO: Zobique - AI Career Agent",
-    company_name: "Zobique",
-    icon: zobique,
-    iconBg: "#383E56",
-    date: "Jan 2025 - Present",
-    points: [
-      "Building Zobique as an AI-powered career guidance platform that delivers personalized insights for students and early professionals.",
-      "Using LLMs, vector databases, and skill-gap analytics to provide real-time learning paths, job matches, and actionable recommendations.",
-      "Continuously testing, refining, and scaling the platform to improve performance, usability, and impact across education and career ecosystems.",
-    ],
+    name: "Automated Hiring Infrastructure",
+    problem: "Recruiters and hiring managers spend excessive time screening and parsing resumes without deep capability insights.",
+    solution: "Built an autonomous screening and assessment pipeline to evaluate candidate capabilities beyond keywords.",
+    techSummary: "Agentic workflows, NLP parsing, Node.js, Next.js, PostgreSQL.",
+    impact: "Reduced candidate evaluation time significantly and improved match quality for specialized roles.",
+    logo: "https://res.cloudinary.com/dufaxdxsj/image/upload/v1725626044/ai-generated-8775742_640_a0zgdm.webp"
   },
+  {
+    name: "SoftTechEvent",
+    problem: "Businesses require high-performing, scalable web applications to handle digital growth and customer engagement.",
+    solution: "Engineered performant web platforms and AI-integrated scalable digital solutions.",
+    techSummary: "Next.js, Node.js, React, Scalable Architecture.",
+    impact: "Delivered robust platforms enabling enhanced digital presence as Co-founder & AI Engineer.",
+    logo: "https://res.cloudinary.com/dufaxdxsj/image/upload/v1780077568/logo_g2rcsq.webp",
+    link: "https://www.softtechevent.com/solutions/web-development"
+  }
 ];
 
-
-
-const projects = [
+export const insights = [
   {
-    name: "Productivity App",
-    description:
-      "A web-based productivity management tool designed to help users track tasks, set goals, and improve efficiency using AI-driven insights.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "appwrite",
-        color: "green-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: productivity,
-    source_code_link: "https://github.com/Risabkshetri/finance.git",
+    title: "Your Resume Isn't Being Rejected—It's Being Dismissed in Seconds",
+    link: "https://blog.zobique.com/blog/your-resume-isnt-being-rejectedits-being-dismissed-in-seconds"
   },
   {
-    name: "Restaurant",
-    description:
-      "A web-based platform that enables users to browse restaurant menus, place online orders, and track their deliveries in real-time, ensuring a smooth and convenient dining experience.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "expressjs",
-        color: "green-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: foodlet,
-    source_code_link: "https://github.com/Risabkshetri/NehaStreetWeb.git",
+    title: "The Difference Between Busy Learning and Smart Learning",
+    link: "https://blog.zobique.com/blog/the-difference-between-busy-learning-and-smart-learning"
   },
   {
-    name: "Portfolio Builder",
-    description:
-      "A dynamic platform that allows users to generate and customize their personal portfolios effortlessly, integrating modern design and real-time updates.",
-    tags: [
-      {
-        name: "nextjs",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "nodejs",
-        color: "green-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: portfoliobuilder,
-    source_code_link: "https://github.com/Risabkshetri/PortfolioGen-frontend.git",
-  },
+    title: "The 7 Deadly Mistakes Students Make When Choosing Tech Internships",
+    link: "https://blog.zobique.com/blog/the-7-deadly-mistakes-students-make-when-choosing-tech-internships"
+  }
 ];
 
+export const capabilities = [
+  {
+    group: "AI Systems",
+    skills: ["LLM Orchestration", "RAG Architecture", "Agentic Workflows", "Vector Databases", "Prompt Engineering"]
+  },
+  {
+    group: "Backend Engineering",
+    skills: ["Node.js / Express", "Python / FastAPI", "PostgreSQL", "MongoDB", "High-Availability APIs"]
+  },
+  {
+    group: "Product Architecture",
+    skills: ["System Design", "Multi-Tenant SaaS", "Microservices", "Data Modeling", "Integrations"]
+  },
+  {
+    group: "Cloud & Deployment",
+    skills: ["AWS / GCP", "Docker", "CI/CD Pipelines", "Serverless Infrastructure", "Monitoring"]
+  }
+];
 
-export { services, technologies, experiences, projects };
+// Fallbacks for any old imports missing
+export const services = [];
+export const technologies = [];
+export const experiences = [];
+export const projects = [];

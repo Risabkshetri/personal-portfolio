@@ -25,7 +25,7 @@ const ZobiquePage = () => {
                     AI Career Intelligence
                 </p>
                 <h1 className={`${styles.sectionHeadText} text-center text-black-100`}>
-                    Zobique.
+                    Zobique<span className="text-[#FF6600]">.</span>
                 </h1>
             </div>
 
