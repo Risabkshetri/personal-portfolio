@@ -1,55 +1,65 @@
 import React from "react";
-
 import { styles } from "../styles";
-import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
-import { projects } from "../constants";
+import { selectedWorks } from "../constants";
 
 const ProjectCard = ({
-  index,
   name,
-  description,
-  tags,
-  image,
-  source_code_link,
+  problem,
+  solution,
+  techSummary,
+  impact,
+  logo,
+  link
 }) => {
   return (
-    <div className='bg-primary border border-black-100/10 p-5 sm:w-[360px] w-full hover:shadow-lg transition-shadow duration-300'>
-      <div className='relative w-full h-[230px]'>
-        <img
-          src={image}
-          alt='project_image'
-          className='w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300'
-        />
+    <div className='bg-white border border-black-100/10 p-8 sm:p-10 w-full hover:shadow-sm hover:border-[#FF6600]/30 transition-all duration-300 mb-10 relative'>
+      {logo && (
+        <div 
+          className="absolute top-8 right-8 w-16 h-16 sm:w-20 sm:h-20 bg-white border border-black-100/10 rounded-full flex items-center justify-center p-2 shadow-sm z-10"
+        >
+          <img src={logo} alt={`${name} logo`} className="w-full h-full object-contain rounded-full" />
+        </div>
+      )}
 
-        <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>
-          <div
-            onClick={() => window.open(source_code_link, "_blank")}
-            className='bg-white w-10 h-10 rounded-full flex justify-center items-center cursor-pointer border border-black-100/10'
+      <div className='flex items-center gap-4 mb-6 border-b border-black-100/10 pb-4 pr-24'>
+        <h3 className='text-black-100 font-bold text-[24px] sm:text-[28px] font-serif'>
+          {name}
+        </h3>
+        {link && (
+          <a 
+            href={link} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-[14px] text-secondary hover:text-[#FF6600] border border-black-100/10 hover:border-[#FF6600]/30 px-3 py-1 bg-[#F6F6EF] transition-colors flex items-center gap-2"
           >
-            <img
-              src={github}
-              alt='source code'
-              className='w-1/2 h-1/2 object-contain'
-            />
+            View <span className="text-[12px]">↗</span>
+          </a>
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="flex flex-col gap-6">
+          <div>
+            <h4 className="text-black-100 font-bold text-[16px] uppercase tracking-wider mb-2">Problem</h4>
+            <p className='text-secondary text-[15px] sm:text-[16px] leading-[1.8]'>{problem}</p>
+          </div>
+          <div>
+            <h4 className="text-black-100 font-bold text-[16px] uppercase tracking-wider mb-2">Solution</h4>
+            <p className='text-secondary text-[15px] sm:text-[16px] leading-[1.8]'>{solution}</p>
           </div>
         </div>
-      </div>
 
-      <div className='mt-5'>
-        <h3 className='text-black-100 font-bold text-[22px] font-serif'>{name}</h3>
-        <p className='mt-2 text-secondary text-[14px] leading-relaxed'>{description}</p>
-      </div>
-
-      <div className='mt-4 flex flex-wrap gap-2'>
-        {tags.map((tag) => (
-          <p
-            key={`${name}-${tag.name}`}
-            className={`text-[13px] text-secondary font-medium`}
-          >
-            #{tag.name}
-          </p>
-        ))}
+        <div className="flex flex-col gap-6">
+          <div>
+            <h4 className="text-black-100 font-bold text-[16px] uppercase tracking-wider mb-2">Tech Summary</h4>
+            <p className='text-secondary text-[15px] sm:text-[16px] leading-[1.8] bg-[#F6F6EF] p-4 border border-black-100/5'>{techSummary}</p>
+          </div>
+          <div>
+            <h4 className="text-black-100 font-bold text-[16px] uppercase tracking-wider mb-2 text-[#FF6600]">Impact</h4>
+            <p className='text-black-100 text-[15px] sm:text-[16px] leading-[1.8] font-medium'>{impact}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -59,19 +69,18 @@ const Works = () => {
   return (
     <>
       <div id="works">
-        <p className={`${styles.sectionSubText} text-secondary`}>My work</p>
-        <h2 className={`${styles.sectionHeadText} text-black-100`}>Projects.</h2>
+        <h2 className={`${styles.sectionHeadText} text-black-100`}>Selected Work.</h2>
       </div>
 
-      <div className='w-full flex'>
-        <p className='mt-3 text-secondary text-[15px] xs:text-[16px] sm:text-[17px] max-w-3xl leading-[1.8]'>
-          My projects highlight my expertise in AI-powered solutions and full-stack development. Each project serves as a case study effectively solving a real-world problem.
+      <div className='w-full flex mb-12'>
+        <p className='mt-3 text-secondary text-[16px] sm:text-[18px] max-w-3xl leading-[1.8]'>
+          These projects highlight my expertise in building production-grade AI systems, career tech infrastructure, and scalable full-stack applications.
         </p>
       </div>
 
-      <div className='mt-20 flex flex-wrap gap-7'>
-        {projects.map((project, index) => (
-          <ProjectCard key={`project-${index}`} index={index} {...project} />
+      <div className='flex flex-col w-full'>
+        {selectedWorks.map((work, index) => (
+          <ProjectCard key={`work-${index}`} {...work} />
         ))}
       </div>
     </>

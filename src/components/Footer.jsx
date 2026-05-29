@@ -10,7 +10,7 @@ const Footer = () => {
           href="https://www.linkedin.com/in/rishab-chhetri/"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 bg-tertiary hover:bg-black-100 hover:text-white transition-all duration-300 group shadow-sm rounded-full"
+          className="p-3 bg-tertiary hover:bg-[#FF6600] hover:text-white transition-all duration-300 group shadow-sm rounded-full"
         >
           <Linkedin className="w-5 h-5 text-secondary group-hover:text-white transition-colors" />
         </a>
@@ -18,7 +18,7 @@ const Footer = () => {
           href="https://github.com/RisabKshetri"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 bg-tertiary hover:bg-black-100 hover:text-white transition-all duration-300 group shadow-sm rounded-full"
+          className="p-3 bg-tertiary hover:bg-[#FF6600] hover:text-white transition-all duration-300 group shadow-sm rounded-full"
         >
           <Github className="w-5 h-5 text-secondary group-hover:text-white transition-colors" />
         </a>
@@ -26,7 +26,7 @@ const Footer = () => {
           href="https://x.com/risab_kshetri"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 bg-tertiary hover:bg-black-100 hover:text-white transition-all duration-300 group shadow-sm rounded-full"
+          className="p-3 bg-tertiary hover:bg-[#FF6600] hover:text-white transition-all duration-300 group shadow-sm rounded-full"
         >
           <Twitter className="w-5 h-5 text-secondary group-hover:text-white transition-colors" />
         </a>

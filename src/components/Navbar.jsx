@@ -29,8 +29,8 @@ const Navbar = () => {
           {navLinks.filter(link => link.id !== 'contact').map((nav) => (
             <li
               key={nav.id}
-              className={`${active === nav.title ? "text-black-100" : "text-secondary"
-                } hover:text-black-100 text-[16px] font-medium cursor-pointer transition-colors`}
+              className={`${active === nav.title ? "text-[#FF6600]" : "text-secondary"
+                } hover:text-[#FF6600] text-[16px] font-medium cursor-pointer transition-colors`}
               onClick={() => setActive(nav.title)}
             >
               <Link to={nav.id === "works" ? "/work" : `/${nav.id}`}>{nav.title}</Link>
@@ -55,7 +55,7 @@ const Navbar = () => {
               {navLinks.filter(link => link.id !== 'contact').map((nav) => (
                 <li
                   key={nav.id}
-                  className={`font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-black-100" : "text-secondary"
+                  className={`font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-[#FF6600]" : "text-secondary"
                     }`}
                   onClick={() => {
                     setToggle(!toggle);

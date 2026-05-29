@@ -14,6 +14,7 @@ import zobique from "./company/zobique.jpg"
 import productivity from "./productivity.png"
 import portfoliobuilder from "./portfolio_builder.png"
 import foodlet from "./foodlet.png"
+import profile from "./rishab.png"
 
 export {
   logo,
@@ -30,5 +31,6 @@ export {
   zobique,
   productivity,
   portfoliobuilder,
-  foodlet
+  foodlet,
+  profile
 };
