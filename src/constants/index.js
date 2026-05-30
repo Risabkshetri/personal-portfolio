@@ -1,14 +1,5 @@
 import {
-  mobile,
-  backend,
-  creator,
-  web,
-  kshetriai,
-  zobique,
   sun,
-  productivity,
-  foodlet,
-  portfoliobuilder,
 } from "../assets";
 
 export const navLinks = [
@@ -110,6 +101,51 @@ export const capabilities = [
   {
     group: "Cloud & Deployment",
     skills: ["AWS / GCP", "Docker", "CI/CD Pipelines", "Serverless Infrastructure", "Monitoring"]
+  }
+];
+
+export const skillsAndTechnologies = [
+  {
+    group: "Frontend",
+    skills: [
+      { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/000000" },
+      { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
+      { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+      { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+      { name: "HTML5", icon: "https://cdn.simpleicons.org/html5/E34F26" },
+      { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+      { name: "React", icon: "https://cdn.simpleicons.org/react/61DAFB" }
+    ]
+  },
+  {
+    group: "Backend",
+    skills: [
+      { name: "Express", icon: "https://cdn.simpleicons.org/express/000000" },
+      { name: "Prisma", icon: "https://cdn.simpleicons.org/prisma/2D3748" },
+      { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/339939" },
+      { name: "Python", icon: "https://cdn.simpleicons.org/python/3776AB" }
+    ]
+  },
+  {
+    group: "Database",
+    skills: [
+      { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/4169E1" },
+      { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/47A248" },
+      { name: "Redis", icon: "https://cdn.simpleicons.org/redis/DC382D" },
+      { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase/FFCA28" },
+      { name: "Supabase", icon: "https://cdn.simpleicons.org/supabase/3ECF8E" }
+    ]
+  },
+  {
+    group: "DevOps",
+    skills: [
+      { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+      { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED" },
+      { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032" },
+      { name: "Vercel", icon: "https://cdn.simpleicons.org/vercel/000000" },
+      { name: "Nginx", icon: "https://cdn.simpleicons.org/nginx/009639" },
+      { name: "Linux", icon: "https://cdn.simpleicons.org/linux/FCC624" }
+    ]
   }
 ];
 
