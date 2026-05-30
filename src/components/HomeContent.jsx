@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
-import { whatIBuild, insights } from "../constants";
+import { whatIBuild, insights, skillsAndTechnologies } from "../constants";
 import { SectionWrapper } from "../hoc";
+import Marquee from "react-fast-marquee";
 
 const partnerLogos = [
   { name: "NCS", url: "https://res.cloudinary.com/dufaxdxsj/image/upload/v1777100591/ncs-small-logo_ucxlog.png" },
@@ -16,6 +17,8 @@ const partnerLogos = [
 ];
 
 const HomeContent = () => {
+  const allSkills = skillsAndTechnologies.flatMap(category => category.skills);
+
   return (
     <div className="w-full flex flex-col gap-32 pb-32">
       {/* 2. Trusted By Logo Slider */}
@@ -79,6 +82,44 @@ const HomeContent = () => {
               </ul>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Technologies Carousel */}
+      <section className={`${styles.paddingX} max-w-7xl mx-auto w-full`}>
+        <div className="mb-12">
+          <h2 className={`${styles.sectionHeadText} text-black-100`}>Technologies.</h2>
+        </div>
+        <div className="bg-white border border-black-100/10 rounded-xl overflow-hidden py-8 shadow-sm">
+          <Marquee gradient={true} gradientColor={[255, 255, 255]} speed={50}>
+            {allSkills.map((skill, idx) => (
+              <div key={idx} className="mx-10 flex flex-col justify-center items-center gap-3 cursor-pointer group">
+                <div className="h-[50px] w-[50px] flex justify-center items-center">
+                  <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    title={skill.name}
+                    className="max-h-full max-w-full object-contain filter group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <span className="text-[14px] font-medium text-secondary text-center group-hover:text-[#FF6600] transition-colors">{skill.name}</span>
+              </div>
+            ))}
+            {/* Duplicate for smooth looping */}
+            {allSkills.map((skill, idx) => (
+              <div key={`dup-${idx}`} className="mx-10 flex flex-col justify-center items-center gap-3 cursor-pointer group">
+                <div className="h-[50px] w-[50px] flex justify-center items-center">
+                  <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    title={skill.name}
+                    className="max-h-full max-w-full object-contain filter group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <span className="text-[14px] font-medium text-secondary text-center group-hover:text-[#FF6600] transition-colors">{skill.name}</span>
+              </div>
+            ))}
+          </Marquee>
         </div>
       </section>
 
