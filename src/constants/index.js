@@ -52,14 +52,6 @@ export const selectedWorks = [
     link: "https://www.ncs.zobique.com"
   },
   {
-    name: "Automated Hiring Infrastructure",
-    problem: "Recruiters and hiring managers spend excessive time screening and parsing resumes without deep capability insights.",
-    solution: "Built an autonomous screening and assessment pipeline to evaluate candidate capabilities beyond keywords.",
-    techSummary: "Agentic workflows, NLP parsing, Node.js, Next.js, PostgreSQL.",
-    impact: "Reduced candidate evaluation time significantly and improved match quality for specialized roles.",
-    logo: "https://res.cloudinary.com/dufaxdxsj/image/upload/v1725626044/ai-generated-8775742_640_a0zgdm.webp"
-  },
-  {
     name: "SoftTechEvent",
     problem: "Businesses require high-performing, scalable web applications to handle digital growth and customer engagement.",
     solution: "Engineered performant web platforms and AI-integrated scalable digital solutions.",
@@ -67,6 +59,24 @@ export const selectedWorks = [
     impact: "Delivered robust platforms enabling enhanced digital presence as Co-founder & AI Engineer.",
     logo: "https://res.cloudinary.com/dufaxdxsj/image/upload/v1780077568/logo_g2rcsq.webp",
     link: "https://www.softtechevent.com/solutions/web-development"
+  },
+  {
+    name: "Productivity App",
+    problem: "Users struggle to manage their finances and daily tasks in a cohesive, real-time application.",
+    solution: "Developed a full-stack productivity and finance tracker integrating real-time database capabilities.",
+    techSummary: "React, Supabase, CSS3",
+    impact: "Delivered a centralized platform to track and manage productivity flows seamlessly.",
+    logo: "https://res.cloudinary.com/dufaxdxsj/image/upload/v1735305029/sub-logo1_jfxydt.jpg",
+    link: "https://finance-cyan-tau.vercel.app/"
+  },
+  {
+    name: "Content Creator Website",
+    problem: "Content creators need robust, highly accessible platforms to manage and distribute their content reliably.",
+    solution: "Built a highly scalable, cloud-native website leveraging containerization and enterprise cloud infrastructure.",
+    techSummary: "Next.js, PostgreSQL, Azure, Kubernetes, GitHub Actions, Docker",
+    impact: "Provided a zero-downtime, auto-scaling platform tailored for high-volume content delivery.",
+    logo: "https://res.cloudinary.com/dufaxdxsj/image/upload/v1725557174/brazil-1368806_1280_jves0l.jpg",
+    link: "https://content-creator-s-web.vercel.app/"
   }
 ];
 

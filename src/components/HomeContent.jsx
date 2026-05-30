@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
-import { whatIBuild, insights, skillsAndTechnologies } from "../constants";
+import { whatIBuild, insights, skillsAndTechnologies, selectedWorks } from "../constants";
 import { SectionWrapper } from "../hoc";
 import Marquee from "react-fast-marquee";
 
@@ -120,6 +120,62 @@ const HomeContent = () => {
               </div>
             ))}
           </Marquee>
+        </div>
+      </section>
+
+      {/* Selected Works */}
+      <section className={`${styles.paddingX} max-w-7xl mx-auto w-full`}>
+        <div className="flex justify-between items-end mb-12">
+          <div>
+            <h2 className={`${styles.sectionHeadText} text-black-100`}>Selected Works.</h2>
+            <p className="mt-4 text-secondary text-[16px] md:text-[18px] max-w-3xl leading-[1.8]">
+              A snapshot of platforms and systems I've built or contributed to.
+            </p>
+          </div>
+          <Link to="/work" className="hidden sm:inline-flex items-center gap-2 text-[#FF6600] font-medium hover:text-[#cc5200] transition-colors">
+            View All Work <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {selectedWorks.slice(0, 4).map((work, index) => (
+            <div key={index} className="flex flex-col bg-white border border-black-100/10 shadow-sm hover:shadow-md transition-shadow">
+              <div className="p-8 flex-1">
+                <div className="flex items-center gap-4 mb-6">
+                  {work.logo && (
+                    <div className="h-12 w-12 rounded-full overflow-hidden border border-black-100/10 shrink-0 bg-[#F6F6EF] flex items-center justify-center">
+                      <img src={work.logo} alt={`${work.name} logo`} className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                  <h3 className="text-[22px] font-bold text-black-100 font-serif">{work.name}</h3>
+                </div>
+                <p className="text-secondary text-[15px] leading-relaxed mb-6">
+                  <span className="font-semibold text-black-100">Impact: </span> 
+                  {work.impact}
+                </p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                    {/* Parse techSummary or just show it if it's a string, assuming it's comma separated */}
+                    {work.techSummary.split(', ').map((tech, idx) => (
+                      <span key={idx} className="bg-[#F6F6EF] px-2.5 py-1 text-[13px] text-secondary border border-black-100/5">
+                        {tech.replace('.', '')}
+                      </span>
+                    ))}
+                </div>
+              </div>
+              {work.link && (
+                <div className="border-t border-black-100/10 px-8 py-4 bg-[#F8F8F8]">
+                  <a href={work.link} target="_blank" rel="noopener noreferrer" className="text-[#FF6600] text-[14px] font-medium flex items-center gap-2 hover:underline">
+                    View Work <span>↗</span>
+                  </a>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 sm:hidden flex justify-center">
+          <Link to="/work" className="inline-flex items-center gap-2 text-[#FF6600] font-medium hover:text-[#cc5200] transition-colors border border-[#FF6600] px-6 py-3 rounded-md">
+            View All Work
+          </Link>
         </div>
       </section>
 
