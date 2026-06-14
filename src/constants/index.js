@@ -160,7 +160,81 @@ export const skillsAndTechnologies = [
 ];
 
 // Fallbacks for any old imports missing
-export const services = [];
 export const technologies = [];
 export const experiences = [];
 export const projects = [];
+
+export const servicesData = [
+  {
+    title: "AI Customer Support Agents",
+    description: "Deploy AI assistants trained on your company knowledge to automate support, answer customer questions, and reduce response times.",
+    iconName: "MessageSquareText"
+  },
+  {
+    title: "Internal Knowledge Systems",
+    description: "Transform company documents, SOPs, and internal knowledge into searchable AI assistants accessible by your team.",
+    iconName: "Database"
+  },
+  {
+    title: "Recruitment & Hiring Automation",
+    description: "Automate resume screening, candidate matching, hiring workflows, and recruitment operations using AI.",
+    iconName: "Users"
+  },
+  {
+    title: "AI Workflow Automation",
+    description: "Replace repetitive manual work with AI-powered workflows across operations, HR, customer support, and internal processes.",
+    iconName: "Workflow"
+  },
+  {
+    title: "AI Product & SaaS Development",
+    description: "Build production-grade AI products from idea to deployment, including architecture, development, and scaling.",
+    iconName: "Rocket"
+  },
+  {
+    title: "Backend Infrastructure & APIs",
+    description: "Design scalable backend systems, APIs, integrations, and cloud infrastructure powering modern applications.",
+    iconName: "Server"
+  }
+];
+
+export const industriesData = [
+  {
+    title: "Startups",
+    description: "Build MVPs, AI products, and scalable systems.",
+    iconName: "Lightbulb"
+  },
+  {
+    title: "Universities",
+    description: "Career intelligence, employability platforms, and student success infrastructure.",
+    iconName: "GraduationCap"
+  },
+  {
+    title: "Recruitment Agencies",
+    description: "Candidate matching, hiring automation, and recruitment intelligence.",
+    iconName: "Briefcase"
+  },
+  {
+    title: "Businesses & Enterprises",
+    description: "Internal AI assistants, workflow automation, and operational efficiency systems.",
+    iconName: "Building2"
+  }
+];
+
+export const engagementModels = [
+  {
+    title: "AI Consulting",
+    description: "Strategy, architecture, and implementation planning."
+  },
+  {
+    title: "Custom Development",
+    description: "End-to-end AI product and platform development."
+  },
+  {
+    title: "Technical Partnerships",
+    description: "Long-term collaboration with startups and organizations."
+  },
+  {
+    title: "Founding Engineer Support",
+    description: "Helping early-stage startups build and launch products quickly."
+  }
+];
