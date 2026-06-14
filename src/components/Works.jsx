@@ -33,7 +33,7 @@ const ProjectCard = ({
             rel="noopener noreferrer" 
             className="text-[14px] text-secondary hover:text-[#FF6600] border border-black-100/10 hover:border-[#FF6600]/30 px-3 py-1 bg-[#F6F6EF] transition-colors flex items-center gap-2"
           >
-            View <span className="text-[12px]">↗</span>
+            View Case Study <span className="text-[12px]">↗</span>
           </a>
         )}
       </div>
@@ -69,12 +69,12 @@ const Works = () => {
   return (
     <>
       <div id="works">
-        <h2 className={`${styles.sectionHeadText} text-black-100`}>Selected Work.</h2>
+        <h2 className={`${styles.sectionHeadText} text-black-100`}>Case Studies & Impact.</h2>
       </div>
 
       <div className='w-full flex mb-12'>
         <p className='mt-3 text-secondary text-[16px] sm:text-[18px] max-w-3xl leading-[1.8]'>
-          These projects highlight my expertise in building production-grade AI systems, career tech infrastructure, and scalable full-stack applications.
+          A selection of projects highlighting my expertise in solving business problems through AI systems, automation, and scalable architecture.
         </p>
       </div>
 

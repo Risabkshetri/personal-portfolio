@@ -15,18 +15,15 @@ const Hero = () => {
             AI Systems Engineer & Founder
           </h2>
           <p className={`${styles.heroSubText} mt-6 text-black-200 max-w-xl text-[16px] md:text-[18px] leading-[1.8]`}>
-            Building production-grade AI systems, agentic workflows, and career intelligence infrastructure.
-            <br className="sm:block hidden" />
-            <br className="sm:block hidden" />
-            Founder of Zobique. Built AI-powered career intelligence systems, university-facing infrastructure, and services integrated into national employment ecosystems.
+            I design and build AI-powered products, automation systems, and intelligent workflows that help organizations scale operations, improve efficiency, and unlock new business opportunities.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link to="/work" className="bg-[#FF6600] text-white px-6 py-3 font-medium hover:bg-[#cc5200] transition-colors border border-transparent">
-              View Work
-            </Link>
-            <Link to="/contact" className="bg-transparent text-black-100 border border-black-100 px-6 py-3 font-medium hover:bg-black-100 hover:text-white transition-colors">
-              Work With Me
+            <a href="https://calendly.com/risawgc/30min" target="_blank" rel="noopener noreferrer" className="bg-[#FF6600] text-white px-6 py-3 font-medium hover:bg-[#cc5200] transition-colors border border-transparent">
+              Book a Discovery Call
+            </a>
+            <Link to="/work" className="bg-transparent text-black-100 border border-black-100 px-6 py-3 font-medium hover:bg-black-100 hover:text-white transition-colors">
+              View Selected Work
             </Link>
           </div>
         </div>
