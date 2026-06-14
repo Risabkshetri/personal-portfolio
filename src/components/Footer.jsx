@@ -1,5 +1,6 @@
 import React from "react";
 import { Linkedin, Github, Twitter } from "lucide-react";
+import TopmateIcon from "./TopmateIcon";
 
 
 const Footer = () => {
@@ -29,6 +30,14 @@ const Footer = () => {
           className="p-3 bg-tertiary hover:bg-[#FF6600] hover:text-white transition-all duration-300 group shadow-sm rounded-full"
         >
           <Twitter className="w-5 h-5 text-secondary group-hover:text-white transition-colors" />
+        </a>
+        <a
+          href="https://topmate.io/rishab_chhetri"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-3 bg-tertiary hover:bg-[#FF6600] hover:text-white transition-all duration-300 group shadow-sm rounded-full"
+        >
+          <TopmateIcon className="w-5 h-5 text-secondary group-hover:text-white transition-colors" />
         </a>
       </div>
     </footer>
