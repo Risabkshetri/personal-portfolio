@@ -59,6 +59,51 @@ const HomeContent = () => {
         </div>
       </section>
 
+      {/* Media Mention */}
+      <section className={`${styles.paddingX} max-w-7xl mx-auto w-full mt-10`}>
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
+          {/* Left Side Heading */}
+          <div className="w-full lg:w-1/3 shrink-0">
+            <h2 className={`${styles.sectionHeadText} text-black-100 leading-tight`}>
+              Featured on <br className="hidden lg:block" />
+              <span className="text-[#e31837]">India Today</span>.
+            </h2>
+          </div>
+
+          {/* Right Side Card */}
+          <div className="w-full lg:w-2/3">
+            <a href="https://www.indiatoday.in/education-today/how-i-made-it/story/how-a-btech-student-turned-friends-career-questions-into-the-ai-startup-zobique-2949089-2026-07-16" target="_blank" rel="noopener noreferrer" className="block w-full group">
+              <div className="bg-white border border-black-100/10 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row items-stretch p-2">
+                {/* Image Side */}
+                <div className="w-full md:w-[280px] shrink-0 overflow-hidden flex items-center justify-center rounded-md">
+                  <img 
+                    src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202607/how-a-btech-student-turned-friends-career-questions-into-the-ai-startup-zobique-163856580-16x9_0.png?VersionId=qE99svfNfUHqxq23X4jIYvSc_AtFtVhd"
+                    alt="India Today Feature" 
+                    className="w-full h-full object-cover rounded-md group-hover:scale-[1.03] transition-transform duration-500"
+                  />
+                </div>
+                
+                {/* Content Side */}
+                <div className="p-5 md:p-8 flex flex-col justify-center flex-1">
+                  <h3 className="text-[20px] md:text-[24px] font-bold text-[#333333] mb-4 leading-[1.3] group-hover:text-[#FF6600] transition-colors">
+                    How answering friends' career questions led me to build an AI startup in college
+                  </h3>
+                  
+                  <div className="flex items-center gap-2 text-[#444444] text-[13px] md:text-[15px] font-bold">
+                    <div className="w-6 h-6 rounded-full bg-[#e31837] text-white flex items-center justify-center font-bold text-[12px] shrink-0 leading-none pb-[1px]">
+                      in
+                    </div>
+                    <span>India Today</span>
+                    <span className="text-gray-400 font-normal mx-1">|</span>
+                    <span>UPDATED: Jul 16, 2026 15:19 IST</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* 3. Services */}
       <section className={`${styles.paddingX} max-w-7xl mx-auto w-full`}>
         <div className="mb-12">
