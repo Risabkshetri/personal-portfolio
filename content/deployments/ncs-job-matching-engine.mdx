@@ -1,0 +1,107 @@
+---
+title: "Job-matching & skill-gap engine, integrated with India's NCS"
+client: "National Career Service (NCS) ecosystem"
+period: "2025 to present"
+status: "live"
+order: 1
+featured: true
+constraint: "A national career-services ecosystem needed matching and skill-gap intelligence that worked with sparse, inconsistent profile data rather than the clean résumés matching engines assume."
+outcome: "Integrated with the NCS ecosystem, giving the matching and skill-gap engine national-level distribution."
+stack:
+  - "Python / FastAPI"
+  - "Vector search"
+  - "LLM-assisted extraction"
+  - "PostgreSQL"
+links:
+  - label: "India Today feature"
+    href: "https://www.indiatoday.in/education-today/how-i-made-it/story/how-a-btech-student-turned-friends-career-questions-into-the-ai-startup-zobique-2949089-2026-07-16"
+  - label: "Zobique Labs client list"
+    href: "https://labs.zobique.com"
+---
+
+> **Framing note.** This write-up describes the engineering: the matching
+> approach, the skill-gap modelling, and the data constraints. It does not claim
+> usage numbers or government endorsement. "Integrated with the NCS ecosystem" is
+> accurate; anything stronger is not.
+>
+> {/* TODO(rishab): confirm what architecture detail your NCS agreement permits
+> publishing before this goes live. When in doubt, cut specifics and keep the
+> reasoning. */}
+
+## The constraint
+
+Most job-matching engines assume a clean input: a structured résumé, a tagged
+skills list, a job description written to a taxonomy. A national career-services
+ecosystem does not look like that. Profiles are partial. Skills are free-text or
+missing. The same role is described five different ways across five sources. Any
+matching approach that needs tidy data fails silently on the majority of real
+profiles. It returns weak matches and no one can tell why.
+
+The actual problem was not "which model ranks jobs best." It was to **produce
+useful matches and an honest skill-gap read from data that is sparse,
+inconsistent, and entered by people who are not thinking about machine
+readability.**
+
+## What I built
+
+{/* TODO(rishab): replace this section with the real architecture, to the depth
+your agreement allows. The structure below is a conservative sketch. */}
+
+- **Normalisation layer.** Free-text roles, skills, and qualifications are mapped
+  to a canonical skill/occupation vocabulary before anything else runs. LLM-
+  assisted extraction fills gaps where a profile has prose but no structured
+  fields; deterministic rules handle the high-frequency cases so cost and latency
+  stay predictable.
+- **Matching.** Candidate and role are embedded into a shared vector space over
+  the canonical vocabulary, then re-ranked with explicit features (location,
+  seniority, hard requirements) so a strong semantic match can't override a
+  disqualifying constraint.
+- **Skill-gap model.** For a target role, the engine returns the specific skills
+  a profile is missing, ranked by how much each one changes match quality. The
+  output is "learn these three things," not a score.
+
+<Figure caption="High-level flow. TODO(rishab): replace with the real diagram.">
+
+```
+profile (sparse, free-text)
+        |
+        v
+ normalisation  ->  canonical skills / occupation codes
+        |
+        v
+  vector match  ->  candidate roles
+        |
+        v
+ constraint re-rank  ->  ranked matches
+        |
+        v
+  skill-gap model  ->  ranked missing skills for a target role
+```
+
+</Figure>
+
+## What broke
+
+This is the section that matters.
+
+- **Silent taxonomy drift.** Source data used role titles that mapped cleanly at
+  integration time and then drifted. Matches degraded slowly rather than
+  failing, so the problem was invisible until we started sampling low-confidence
+  matches on a schedule. {/* TODO(rishab): keep or replace with the real failure. */}
+- **LLM extraction over-confidence.** Early on, the extraction step would invent
+  plausible structured skills from thin prose. The fix was to make it abstain
+  (no field rather than a guessed field) and treat abstention as normal.
+- **Cost and latency at the tail.** A small fraction of profiles were large and
+  messy enough to blow the latency budget. Capping work per profile and degrading
+  gracefully mattered more than optimising the median.
+
+## Outcome
+
+Integrated with the NCS ecosystem, which gives the engine national-level
+distribution. {/* TODO(rishab): add any metric you can actually stand behind and
+attribute. If you don't have one, leave this as honest silence. */}
+
+## What I'd redesign
+
+{/* TODO(rishab): two or three sentences on what you'd do differently. This is the
+part senior readers trust most. */}

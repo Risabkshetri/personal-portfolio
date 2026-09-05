@@ -1,0 +1,69 @@
+---
+title: "Lead-qualification automation for a people-run sales pipeline"
+client: "Zobique Labs engagement"
+period: "2025"
+status: "live"
+order: 3
+featured: true
+constraint: "The client's sales pipeline lived in WhatsApp threads and one person's head. Leads were qualified inconsistently and the good ones went cold before anyone got to them."
+outcome: "Inbound leads are enriched, scored, and routed automatically; the sales team starts the day with a ranked list instead of a backlog."
+stack:
+  - "Python"
+  - "LLM extraction & classification"
+  - "Workflow orchestration"
+  - "CRM / sheet integration"
+links:
+  - label: "Zobique Labs"
+    href: "https://labs.zobique.com"
+---
+
+## The constraint
+
+The client had more inbound than they could work, and no consistent way to tell a
+serious lead from a tyre-kicker until someone had spent 20 minutes on a call.
+Qualification criteria existed only in the founder's head, and shifted slightly
+each week. Leads arrived across a web form, WhatsApp, and email, landed in
+different places, and the first-response time on the best leads was measured in
+days.
+
+The hard part was not the model. It was reconstructing what "a good lead"
+actually meant for this business from watching how deals had actually gone.
+
+## What I built
+
+A pipeline that runs on every inbound lead:
+
+1. **Ingest & unify.** Form, WhatsApp, and email leads normalise into one record.
+2. **Enrich.** Public signals about the company and contact are pulled in and
+   summarised.
+3. **Score & classify.** An LLM step maps the lead to the qualification criteria
+   we reconstructed with the client, and attaches a short written rationale
+   rather than just a number.
+4. **Route.** High-scoring leads are pushed to the top of the sales team's list
+   with the rationale attached; low-scoring ones get a lighter-touch path.
+
+{/* TODO(rishab): name the client if permitted, and add the real numbers:
+response-time before and after, conversion change, volume handled. */}
+
+## What broke
+
+- **The criteria were a moving target.** The first scoring rubric was obsolete
+  within weeks because the client's focus shifted. The fix was making the rubric
+  a config the client owns, not something baked into code.
+- **Enrichment dead ends.** For a meaningful share of leads, there was simply no
+  public signal. The step had to return "nothing found" cleanly instead of
+  stalling the pipeline.
+- **Over-automation risk.** Auto-demoting a lead the founder personally cared
+  about erodes trust in the whole system fast. Low-confidence classifications
+  now surface for a human rather than acting silently.
+
+## Outcome
+
+{/* TODO(rishab): replace with what you can actually attribute. If you only have
+qualitative outcomes, say that plainly. */}
+The sales team now starts the day with a ranked, annotated list rather than an
+undifferentiated backlog, and the best leads get a same-day first touch.
+
+## What I'd redesign
+
+{/* TODO(rishab): two or three sentences. */}

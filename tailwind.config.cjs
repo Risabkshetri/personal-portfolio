@@ -1,25 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx}"],
-  mode: "jit",
+  content: [
+    "./app/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./lib/**/*.{js,jsx}",
+    "./content/**/*.mdx",
+  ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-poppins)", "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ["var(--font-newsreader)", "ui-serif", "Georgia", "serif"],
+      },
       colors: {
         primary: "#ffffff",
-        secondary: "#828282", // YC gray
-        tertiary: "#F6F6EF", // Hacker News background
-        "black-100": "#222222", // dark text
-        "black-200": "#000000", // darker text
-        "white-100": "#F6F6EF", // light background
-      },
-      boxShadow: {
-        card: "0px 35px 120px -15px #211e35",
+        secondary: "#828282",
+        tertiary: "#F6F6EF",
+        "black-100": "#222222",
+        "black-200": "#000000",
+        "white-100": "#F6F6EF",
+        accent: "#FF6600",
+        "accent-dark": "#cc5200",
       },
       screens: {
         xs: "450px",
       },
-      backgroundImage: {
-        "hero-pattern": "url('/src/assets/herobg.png')",
+      maxWidth: {
+        prose: "42rem",
       },
     },
   },
