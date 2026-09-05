@@ -1,0 +1,71 @@
+---
+title: "Zobique: AI career-intelligence platform for universities"
+client: "Zobique · university pilots"
+period: "2024 to present"
+status: "pilot"
+order: 2
+featured: true
+constraint: "Universities can tell you a student's marks but not their job readiness, and students find out the gap exists only after they start failing interviews."
+outcome: "Piloted across 2 universities with 1,500+ students, contributing to 50+ placements."
+stack:
+  - "RAG / LLM orchestration"
+  - "Vector database"
+  - "Python"
+  - "React"
+  - "Multi-tenant backend"
+links:
+  - label: "zobique.com"
+    href: "https://www.zobique.com"
+  - label: "India Today feature"
+    href: "https://www.indiatoday.in/education-today/how-i-made-it/story/how-a-btech-student-turned-friends-career-questions-into-the-ai-startup-zobique-2949089-2026-07-16"
+---
+
+## The constraint
+
+The gap between "graduated" and "employable" is an infrastructure problem, not a
+teaching one. A university has grades, attendance, and a placement cell that runs
+on spreadsheets. It does not have a per-student read on *what specifically* is
+between this person and the job they want, early enough to act on it.
+
+Students discover the gap the hard way, through a run of rejected applications and
+failed interviews, at which point there is a semester or less to close it.
+
+## What I built
+
+Zobique is a multi-tenant platform that each university runs for its own cohort:
+
+- **Career Studio.** A student's profile, target roles, and history feed a
+  retrieval-augmented model that returns a concrete skill-gap read and a
+  personalised path, ranked by impact on job readiness rather than a generic
+  syllabus.
+- **Job & application intelligence.** Matching against live postings, ATS-aware
+  résumé feedback, and interview practice with structured feedback.
+- **Placement intelligence.** The placement cell gets an aggregate view of where
+  its cohort is weak, so intervention is a decision backed by data rather than a
+  guess.
+
+{/* TODO(rishab): add the parts of the architecture you want to be known for:
+how retrieval is grounded, how you keep tenant data isolated, how the skill-gap
+ranking actually works. */}
+
+## What broke
+
+- **"Personalised" that wasn't.** The first skill-gap output was too close to a
+  generic roadmap. It only became useful once the ranking was tied to observed
+  outcomes for similar profiles rather than to a fixed skill tree.
+- **Cold-start profiles.** A first-year with almost no history gets a weak read.
+  The honest fix was to say so in the UI rather than manufacture confidence.
+- **Placement-cell trust.** Aggregate dashboards are only used if the numbers
+  match what the cell already believes about its cohort on the cases they know
+  well. Getting those anchor cases right was what earned the rest.
+  {/* TODO(rishab): confirm or replace with the real adoption story. */}
+
+## Outcome
+
+Piloted across 2 universities with 1,500+ students, contributing to 50+
+placements. {/* Stated exactly per the founder context. Do not restate this as
+"1,500+ students placed." */}
+
+## What I'd redesign
+
+{/* TODO(rishab): what you'd change about the platform or the pilot model. */}

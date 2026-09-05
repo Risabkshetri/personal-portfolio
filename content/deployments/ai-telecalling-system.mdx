@@ -1,0 +1,58 @@
+---
+title: "AI voice agent for real-estate lead qualification"
+client: "Zobique Labs engagement"
+period: "2025"
+status: "live"
+order: 4
+featured: false
+constraint: "A real-estate team was paying people to make the same qualifying call hundreds of times. Most calls ended in 'not interested' or no answer."
+outcome: "A voice agent makes the first qualifying call, books the interested leads, and hands the rest back with notes."
+stack:
+  - "Python"
+  - "Telephony / speech APIs"
+  - "LLM dialogue"
+  - "Calendar / CRM integration"
+links:
+  - label: "Source on GitHub"
+    href: "https://github.com/Risabkshetri/AI-Telecalling"
+---
+
+## The constraint
+
+First-contact telecalling for real-estate leads is repetitive, high-volume, and
+mostly unproductive per call. The small fraction of interested leads still
+matters a lot. Paying trained people to spend most of their day on "no answer"
+and "not interested" is expensive, and call quality drifts by the afternoon.
+
+## What I built
+
+A voice agent that handles the first call:
+
+- Places the call, runs a short qualification script, and adapts to the replies.
+- For interested leads: captures requirements and books a follow-up on a real
+  human's calendar.
+- For everyone else: logs the outcome and a transcript summary so a person can
+  review the edge cases.
+
+Source is public: [`Risabkshetri/AI-Telecalling`](https://github.com/Risabkshetri/AI-Telecalling).
+
+{/* TODO(rishab): add call volume handled, connect rate, booking rate, and how
+you handle language mix. This is where the real credibility is. */}
+
+## What broke
+
+- **Latency kills a phone call.** Response gaps that are fine in chat feel broken
+  on a call. Getting time-to-first-audio under control mattered more than model
+  quality.
+- **Interruptions and hold music.** Real calls have people talking over the
+  agent, IVR menus, and dead air. The happy-path script was the easy 20%.
+- **Knowing when to give up.** The agent needed a firm rule for ending a call
+  gracefully rather than looping when a lead was clearly disengaged.
+
+## Outcome
+
+{/* TODO(rishab): fill with real numbers, or describe qualitatively and say so. */}
+
+## What I'd redesign
+
+{/* TODO(rishab): two or three sentences. */}

@@ -1,0 +1,35 @@
+---
+title: "Make the model abstain"
+date: "2026-08-18"
+stream: "engineering"
+summary: "The most useful thing an extraction step can output is nothing. A note from building matching and lead-scoring pipelines on messy data."
+draft: false
+---
+
+Every pipeline I've built that puts an LLM between messy input and a structured
+decision has had the same early failure: the model fills in fields it shouldn't.
+Given a thin candidate profile (a job title and two lines of prose), it will
+happily produce a confident list of "skills" that were never stated. Given a
+sparse lead, it invents a company size. The output looks clean. It is wrong in a
+way that is invisible downstream, because nothing about a fabricated field says
+"fabricated."
+
+The fix is boring and it works: **make abstention a first-class output, and treat
+it as normal.** No field beats a guessed field. The extraction step returns
+`null` for anything it can't ground in the input, and every consumer of that step
+is written to expect `null` as the common case, not the error case.
+
+Two things follow from that:
+
+- **Confidence has to be calibrated against abstention, not against being right.**
+  The question isn't "how sure are you this is Python." It's "are you sure enough
+  to say anything at all."
+- **Downstream ranking has to degrade gracefully.** A profile with three grounded
+  skills and eight nulls should produce a weaker, clearly-marked match, not one
+  that silently competes with fully-populated profiles.
+
+The version of this that scales is deterministic rules for the high-frequency
+cases and the model only for the genuinely ambiguous tail, which is allowed to
+come back empty. You lose some recall. You stop shipping confident
+nonsense. On data entered by people who aren't thinking about machine
+readability, that's the right trade.
