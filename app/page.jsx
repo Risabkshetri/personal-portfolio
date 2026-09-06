@@ -77,6 +77,7 @@ export default function HomePage() {
             width={200}
             height={200}
             priority
+            sizes="(min-width: 640px) 200px, 160px"
             className="h-[160px] w-[160px] rounded-full border border-black-100/10 object-cover grayscale sm:h-[200px] sm:w-[200px]"
           />
         </div>

@@ -30,29 +30,28 @@ export function GET() {
     "- India Today: featured in a founder story. Not an award.",
     "",
     "## Links",
-    `- Site: ${site.url}`,
-    `- Zobique: ${site.org.url}`,
-    `- Zobique Labs: ${site.org.labs}`,
-    `- GitHub: ${site.socials.github}`,
-    `- LinkedIn: ${site.socials.linkedin}`,
-    `- India Today feature: ${site.indiaToday}`,
-    `- Contact: ${site.email}`,
+    `- [Site](${site.url})`,
+    `- [Zobique](${site.org.url})`,
+    `- [Zobique Labs](${site.org.labs})`,
+    `- [GitHub](${site.socials.github})`,
+    `- [LinkedIn](${site.socials.linkedin})`,
+    `- [India Today feature](${site.indiaToday})`,
+    `- [Contact](mailto:${site.email})`,
     "",
     "## Deployments",
-    ...deployments.flatMap((d) => [
-      `- ${d.frontmatter.title}`,
-      `  Outcome: ${d.frontmatter.outcome}`,
-      `  ${site.url}/deployments/${d.slug}`,
-    ]),
+    ...deployments.map(
+      (d) =>
+        `- [${d.frontmatter.title}](${site.url}/deployments/${d.slug}): ${d.frontmatter.outcome}`
+    ),
     "",
     "## Writing",
     ...posts.map(
-      (p) => `- ${p.frontmatter.title} (${site.url}/writing/${p.slug})`
+      (p) => `- [${p.frontmatter.title}](${site.url}/writing/${p.slug})`
     ),
     "",
     `## Feeds`,
-    `- RSS: ${site.url}/feed.xml`,
-    `- Sitemap: ${site.url}/sitemap.xml`,
+    `- [RSS](${site.url}/feed.xml)`,
+    `- [Sitemap](${site.url}/sitemap.xml)`,
     "",
   ];
 
