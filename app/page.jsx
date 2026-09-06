@@ -70,7 +70,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="shrink-0">
+        <div className="shrink-0 self-center md:self-start">
           <Image
             src="/rishab.png"
             alt="Rishab Chhetri"
