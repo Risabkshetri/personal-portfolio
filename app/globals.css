@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background-color: #f6f6ef;
+  color: #222222;
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #ff6600;
+  color: #ffffff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Anchor offset so heading links land below the fixed navbar */
+:target {
+  scroll-margin-top: 6rem;
+}
+
+/* ---- Long-form prose (writing + deployment bodies) ---- */
+.prose-body {
+  color: #333333;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+.prose-body h2 {
+  font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  color: #222222;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+}
+.prose-body h3 {
+  font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #222222;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.prose-body p {
+  margin-bottom: 1.25rem;
+}
+.prose-body ul,
+.prose-body ol {
+  margin: 0 0 1.25rem 1.25rem;
+  list-style: revert;
+}
+.prose-body li {
+  margin-bottom: 0.4rem;
+}
+.prose-body a {
+  color: #cc5200;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-body a:hover {
+  color: #ff6600;
+}
+.prose-body strong {
+  color: #222222;
+  font-weight: 600;
+}
+.prose-body blockquote {
+  border-left: 3px solid #ff6600;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: #555555;
+}
+.prose-body code {
+  background: #ffffff;
+  border: 1px solid rgba(34, 34, 34, 0.12);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+.prose-body pre {
+  background: #222222;
+  color: #f6f6ef;
+  padding: 1.25rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.prose-body pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+.prose-body hr {
+  border: 0;
+  border-top: 1px solid rgba(34, 34, 34, 0.12);
+  margin: 2.5rem 0;
+}
+.prose-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.prose-body th,
+.prose-body td {
+  border: 1px solid rgba(34, 34, 34, 0.12);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.prose-body th {
+  background: #ffffff;
+}
+.heading-anchor {
+  color: #828282;
+  text-decoration: none;
+  margin-left: 0.4rem;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.prose-body h2:hover .heading-anchor,
+.prose-body h3:hover .heading-anchor {
+  opacity: 1;
+}
