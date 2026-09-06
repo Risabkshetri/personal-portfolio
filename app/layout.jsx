@@ -7,17 +7,21 @@ import Footer from "../components/Footer";
 import HeroBackground from "../components/HeroBackground";
 import JsonLd from "../components/JsonLd";
 
+// Only the weights actually used in the UI are requested: body is 400,
+// `font-medium` is 500, `font-semibold` is 600. The serif is headings-only and
+// always semibold, so a single weight and no italic keeps the font payload
+// small (fonts were ~50% of the page weight before this was trimmed).
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   variable: "--font-poppins",
   display: "swap",
 });
 
 const newsreader = Newsreader({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["600"],
+  style: ["normal"],
   variable: "--font-newsreader",
   display: "swap",
 });
