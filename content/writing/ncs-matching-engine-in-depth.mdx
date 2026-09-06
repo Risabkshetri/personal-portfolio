@@ -1,16 +1,307 @@
 ---
 title: "The NCS matching engine, in depth"
-date: "2026-09-01"
+date: "2026-09-06"
 stream: "engineering"
-summary: "The matching approach, the skill-gap modelling, the data constraints, and what I'd redesign. Written as engineering, conservative on framing."
-draft: true
+summary: "How a college RAG experiment became a job-matching and skill-gap engine integrated with India's National Career Service: the matching approach, the skill-gap modelling, the data constraints, and what I would redesign."
+draft: false
 ---
 
-{/* TODO(rishab): this is the single highest-value piece on the site. Write it as
-your engineering, matching approach, skill-gap modelling, data constraints you
-hit, what you'd redesign. Check your NCS agreement before publishing architecture
-details. "Integrated with the NCS ecosystem" is true and strong; "used by
-millions" is not. */}
+> **Framing note.** This describes the engineering: the matching approach, the
+> skill-gap modelling, and the data constraints. It does not claim usage numbers
+> or government endorsement. "Integrated with the NCS ecosystem" is accurate;
+> anything stronger is not. Implementation details of government systems are
+> deliberately left out.
 
-Draft in progress. See the [deployment write-up](/deployments/ncs-job-matching-engine)
-for the current summary.
+## Where this started
+
+I did not set out to build employment infrastructure. I set out to stop
+answering the same question.
+
+Through my early years of a B.Tech in Delhi, someone asked me most days what
+language they should learn, or what career path was right for them. After a few
+hundred of these conversations I noticed how I was actually answering. I was not
+looking at anyone's degree. I was combining three things: what they had studied,
+what they could actually do, and what they were drawn to.
+
+That was an informal model running in my head, so I tried to automate it.
+
+The first version was a RAG-based career recommendation system. Upload a resume,
+complete a behavioural assessment, then talk to it. I tested it on myself first,
+and it identified gaps in my own profile with more specificity than I expected.
+That was the moment I thought there was something here. It was also the moment I
+understood it was a good demo and not yet a product.
+
+The real signal came later. The next time friends asked me career questions, I
+told them to use the system first and come back only if it did not resolve
+things. That change in my own behaviour was the beginning of Zobique.
+
+## The actual problem
+
+The demo became a product only after I started talking to students, professors,
+and eventually placement teams.
+
+From inside a university the problem looks different. Student information sits
+across resumes, spreadsheets, forms, assessment results, and placement records.
+A single coordinator can be responsible for thousands of students against a
+constantly changing set of openings. Matching ends up dependent on manual
+filtering and human judgment under time pressure.
+
+Guidance had a second problem. Generic advice is easy to produce: learn Python,
+improve communication, build projects. None of it answers the question that
+matters, which is what this specific person should do next, given where they
+stand today and what the market is asking for.
+
+That reframed things for me. The gap was not a lack of AI in career guidance. It
+was that no structured representation existed of what a person currently knows
+relative to what a job actually requires. Once that is missing, everything
+downstream gets harder: matching, recommendations, gap analysis, learning paths,
+placement decisions, recruiter discovery.
+
+So I stopped thinking of the product as a chatbot. The chatbot was an interface.
+The real problem was representation and matching.
+
+## What I built
+
+Two coupled layers. A matching engine answering which opportunities are relevant
+to a person, and a skill-gap engine answering why that person is not ready for
+them yet.
+
+The second question turned out to be the important one. Telling a student they
+are a 61 percent fit for a role does not tell them what to do on Monday morning.
+
+**Representing the candidate.** A profile is not one large blob of text. The
+system combines structured and unstructured signals: education, projects,
+skills, experience, assessment results, preferences, and stated objectives.
+Skills are normalised so the system does not depend on the exact words a student
+happened to use. A student writes "MERN". A posting says "JavaScript, React,
+Node.js, and MongoDB". Those have to connect. The output is a candidate skill
+and career representation, not a resume embedding.
+
+**Representing the job.** Same idea. A posting carries required and preferred
+skills, experience and education requirements, responsibilities, role type,
+seniority, and location, held as both semantic and structured information.
+
+**Hybrid matching.** My first instinct was pure semantic retrieval. That works
+well for a prototype and breaks as the system becomes consequential. A candidate
+can be semantically similar to a role while failing a hard requirement, and two
+roles can use completely different language for the same capability.
+
+So the pipeline runs representation, retrieval, constraint checks, relevance
+scoring, then ranking. Semantic similarity finds relevant opportunities.
+Structured attributes block obviously wrong ones. It is closer to how an
+experienced placement professional thinks, except it runs consistently across a
+far larger candidate set.
+
+**The skill-gap layer.** For each relevant role, the system compares what the
+role requires against what the candidate demonstrates. The output is not
+"missing: Python". It answers which requirements are met, which are partially
+met, which gaps matter most, which repeat across several target roles, and what
+to build or learn next.
+
+Skills come from both directions. From the job, extracted and normalised. From
+the candidate, inferred from evidence. A resume rarely says "I know REST APIs".
+It says "built a backend service using FastAPI and PostgreSQL". The system has to
+reason over evidence rather than match keywords.
+
+Profiles are also not binary. Someone can have no exposure, theoretical
+knowledge, a small project, substantial project work, or professional
+experience. The system has to separate the presence of a skill from the strength
+of evidence for it. Models help with extraction and interpretation, but they
+should not be free to invent a student's capabilities.
+
+I wrote more about that last point in [Make the model
+abstain](/writing/make-the-model-abstain), and about what a gap actually is in
+[What a skill-gap actually is](/writing/what-a-skill-gap-actually-is).
+
+## Architecture
+
+Next.js and React for the interface, FastAPI and Python for backend services,
+PostgreSQL for structured data, a vector store for retrieval, Redis for caching
+and async work, LLM APIs for extraction and reasoning, and a mix of Playwright,
+BeautifulSoup, and direct APIs for ingestion.
+
+The flow: ingestion and parsing, structured profile and job representation,
+embeddings and retrieval, matching, requirement comparison, gap analysis,
+recommendations.
+
+<Figure caption="High-level flow. Structured representation sits before retrieval, and deterministic constraint checks sit after it.">
+
+```
+resume / profile (sparse, free-text)
+        |
+        v
+ ingestion + parsing
+        |
+        v
+ structured representation  ->  canonical skills, evidence strength
+        |
+        v
+ embeddings + retrieval  ->  candidate roles
+        |
+        v
+ constraint checks + scoring  ->  ranked matches
+        |
+        v
+ requirement comparison  ->  ranked gaps for a target role
+```
+
+</Figure>
+
+The decision that mattered most was separating data representation from
+generation. The LLM is not the database and not the source of truth about a
+student. The system stores structured information, retrieves relevant evidence
+first, and the model reasons over that context. That made the system
+controllable.
+
+## Integrating with the National Career Service
+
+The next step was integrating the technology with the National Career Service,
+the employment platform operated under the Ministry of Labour and Employment,
+Government of India.
+
+This changed the engineering problem. A prototype tolerates ambiguity. A
+production integration does not. Inside your own product you control the
+interface, the input format, the pipeline, and the failure conditions. An
+external employment ecosystem introduces constraints you do not control.
+
+The integration sits around the same core intelligence layer. Data arrives
+through an integration layer, gets processed into our representation, runs
+through matching and skill intelligence, and returns structured results.
+Implementation details of government systems are deliberately not described here.
+
+The engineering lesson is the abstraction. The intelligence engine should not
+need to know much about the system sending it data. It receives a well-defined
+representation, does its work, and returns a predictable result.
+
+The prototype had assumed clean inputs. Real employment data is not clean:
+inconsistent text, incomplete profiles, uneven job description quality, missing
+fields, the same skill expressed five ways. The integration was never "connect
+an API to a model". It was a test of whether the representation and processing
+pipeline could survive outside a controlled environment. That was the actual
+milestone.
+
+## What broke
+
+This is the part worth documenting. The interesting work was never getting the
+first demo running. It was everything after.
+
+**Resume parsing.** Students use Word, Canva, and a dozen resume builders. Some
+PDFs have proper text layers, some do not. Tables, unusual headings, skills
+buried inside paragraphs. A parser that handles ten hand-picked resumes looks
+excellent and becomes a different system entirely against thousands of arbitrary
+ones. Parsing is not preprocessing, it is part of the product. If the candidate
+representation is wrong, everything downstream can be wrong while still producing
+a convincing looking answer.
+
+**Skill vocabulary.** MERN, full-stack JavaScript, React plus Node, web
+development. Not identical, but treating them as unrelated produces poor
+matching. We needed semantic understanding combined with normalised skills, so
+the system could see relationships between terms without collapsing them into one
+thing.
+
+**Cold start.** The hardest student to help is the one with almost no
+information: a degree, a thin resume, no projects. This produced a principle I
+now apply everywhere. The system should know when it does not know enough. Rather
+than manufacturing precision, it should identify the missing signal and ask for
+it. In career guidance, false confidence is worse than no recommendation.
+
+**Non-determinism.** LLMs are excellent at interpreting messy human language and
+are also probabilistic. If the model decides everything, the same candidate can
+receive different guidance on different days. That is unacceptable when the
+output affects someone's employment. So the model has boundaries: extraction,
+interpretation, and reasoning over retrieved evidence. Application logic stays
+deterministic wherever it can.
+
+**Evaluation.** The hardest conceptual problem. There is no clean ground truth
+for a correct career recommendation. A student getting hired does not prove the
+recommendation was right, and a student ignoring one does not prove it was
+wrong. So instead of one accuracy number we use several signals. For matching:
+did relevant roles rank near the top, were clearly irrelevant ones excluded, did
+human reviewers agree. For gaps: were the missing skills actually missing, was
+there evidence behind each one, did students find the output actionable. The
+question is not whether the model is accurate. It is whether the whole system
+makes better decisions than the process it replaces.
+
+**Cost.** Every additional student adds parsing, embedding, retrieval, and
+inference cost. At ten users, architecture barely matters. At 1,500 it matters.
+At institutional scale it becomes product economics. That pushed us toward
+caching, separating expensive operations from lightweight retrieval, cutting
+unnecessary model calls, and matching the model to the task instead of using the
+most capable one everywhere.
+
+**Trust.** The last failure mode was not technical. A recommendation can be
+correct and still be ignored. Students do not act because software told them to.
+They need a reason, evidence, and a clear next step. That is why I stopped
+optimising purely for match quality and started optimising for actionability.
+
+## What happened
+
+The system was piloted across 2 universities with 1,500+ students, contributing
+to 50+ placements.
+
+That placement figure needs care. The system was part of a broader career and
+placement process, not the sole cause of any hire. Placements involve student
+preparation, university processes, recruiter requirements, interviews, and
+timing.
+
+The more useful conclusion is not the number. It is that the intelligence layer
+held up against real student populations rather than curated demo profiles.
+
+The aggregate data confirmed something I had suspected. Students usually know the
+destination they want long before they understand the capability gap between
+where they stand and that destination. A job board tells you what exists. A
+chatbot tells you what to consider. A matching engine tells you what you are
+suited for. A skill-gap engine tells you where you are, what the market wants,
+and what to do next. That is a more useful primitive.
+
+## What I would redesign
+
+**Build evaluation before building more intelligence.** My instinct was to make
+recommendations better. I should have first built a fixed evaluation set of
+anonymised candidate and job pairs with human-labelled relevance and known
+failure cases. Without it, a more impressive demo is easily mistaken for a better
+system.
+
+**Treat the skill ontology as infrastructure.** Early systems treat skills as
+strings. Production systems cannot. Skills contain other skills, sit adjacent to
+each other, and split into tools, concepts, and capabilities. That representation
+deserves to be real infrastructure rather than a side effect of prompting,
+because it eventually powers matching, gap analysis, learning paths, recruiter
+search, and workforce analytics.
+
+**Do not put the LLM at the centre.** Resume in, LLM answers, is fast to build
+and very hard to control. I would start from data, representation, retrieval, and
+deterministic logic, then add model reasoning only where needed, then validation.
+
+**Design for bad data from day one.** The clean demo dataset is a trap. I would
+build the first evaluation set deliberately from ugly resumes, vague job
+descriptions, duplicate skills, and missing fields. The real world should be the
+test set.
+
+**Separate intelligence from distribution.** This is what the NCS work taught me
+most clearly. The engine should not be coupled to one frontend, one university,
+or one platform. The reusable asset is the intelligence layer, and different
+interfaces sit above it.
+
+## Where this goes
+
+Matching itself is becoming commoditised. The asset I care about is a structured
+representation of what a person can currently do versus what a role requires.
+That supports placement intelligence for universities, career planning for
+students, candidate discovery for recruiters, and a clearer view of talent
+readiness for employers. It is the direction we are taking this work at Zobique.
+
+The first version of this project answered my friends' career questions. The
+later version had to survive resumes that would not parse, skills without
+consistent names, incomplete profiles, inference costs, and institutional
+constraints.
+
+Building an AI demo is mostly about making the model work. Building an AI system
+is about making everything around the model work reliably. That difference is
+where most of the engineering lives.
+
+## Links
+
+- [Deployment write-up](/deployments/ncs-job-matching-engine) for the shorter summary
+- [Featured by India Today](https://www.indiatoday.in/education-today/how-i-made-it/story/how-a-btech-student-turned-friends-career-questions-into-the-ai-startup-zobique-2949089-2026-07-16), a founder story on building Zobique while pursuing a B.Tech
+- Built with Mohit Kholiya and Vansh Attri
