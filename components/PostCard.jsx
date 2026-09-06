@@ -33,7 +33,7 @@ export default function PostCard({ slug, frontmatter, readingTime }) {
         </p>
       )}
       {readingTime && (
-        <span className="mt-2 text-[12px] uppercase tracking-[0.14em] text-black-100/40">
+        <span className="mt-2 text-[12px] uppercase tracking-[0.14em] text-secondary">
           {readingTime}
         </span>
       )}
