@@ -5,8 +5,8 @@ period: "2025"
 status: "live"
 order: 4
 featured: false
-constraint: "A real-estate team was paying people to make the same qualifying call hundreds of times. Most calls ended in 'not interested' or no answer."
-outcome: "A voice agent makes the first qualifying call, books the interested leads, and hands the rest back with notes."
+constraint: "A real-estate team was paying people to make the same qualifying call hundreds of times. Most calls ended in 'not interested' or no answer, and the interesting leads were a small fraction of the total."
+outcome: "A voice agent makes the first qualifying call, books the interested leads, and hands the rest back to the sales team with structured notes."
 stack:
   - "Python"
   - "Telephony / speech APIs"
@@ -19,40 +19,77 @@ links:
 
 ## The constraint
 
-First-contact telecalling for real-estate leads is repetitive, high-volume, and
-mostly unproductive per call. The small fraction of interested leads still
-matters a lot. Paying trained people to spend most of their day on "no answer"
-and "not interested" is expensive, and call quality drifts by the afternoon.
+A real-estate team was spending people-hours making the same first qualification
+call again and again. Most calls ended with no answer, not interested, or a very
+short conversation. The interesting leads were a small fraction of the total, but
+those were the ones the sales team actually needed to spend time on.
+
+Real-estate lead calling looks simple until you try to automate it. The script is
+repetitive, but the conversation isn't. People interrupt. They ask questions
+outside the script. Some don't understand who is calling. Some are busy. Some say
+they'll call back and never do.
+
+And because this is a phone call, latency becomes very noticeable. A two-second
+pause in a chatbot is nothing. On a phone call, it feels like the system is
+broken.
+
+The goal wasn't to build a human-like AI salesperson. It was much simpler: let
+the agent handle the repetitive first interaction and get a human involved when
+there is actually something worth following up on.
 
 ## What I built
 
-A voice agent that handles the first call:
+The agent handles the first call from start to finish. It places the call,
+introduces itself, asks a short set of qualification questions, adapts based on
+the lead's responses, captures requirements from interested leads, books a
+follow-up on a real human's calendar, and records the outcome and a conversation
+summary.
 
-- Places the call, runs a short qualification script, and adapts to the replies.
-- For interested leads: captures requirements and books a follow-up on a real
-  human's calendar.
-- For everyone else: logs the outcome and a transcript summary so a person can
-  review the edge cases.
+The important part was not making the conversation infinitely flexible. It was
+keeping the agent bounded enough to be reliable. For an interested lead, we
+wanted structured information a salesperson could actually use. For everyone
+else, we wanted a clean outcome instead of another manual follow-up task.
 
 Source is public: [`Risabkshetri/AI-Telecalling`](https://github.com/Risabkshetri/AI-Telecalling).
 
-{/* TODO(rishab): add call volume handled, connect rate, booking rate, and how
-you handle language mix. This is where the real credibility is. */}
-
 ## What broke
 
-- **Latency kills a phone call.** Response gaps that are fine in chat feel broken
-  on a call. Getting time-to-first-audio under control mattered more than model
-  quality.
-- **Interruptions and hold music.** Real calls have people talking over the
-  agent, IVR menus, and dead air. The happy-path script was the easy 20%.
-- **Knowing when to give up.** The agent needed a firm rule for ending a call
-  gracefully rather than looping when a lead was clearly disengaged.
+- **Latency kills a phone call.** The model can be intelligent and the call can
+  still feel terrible. We spent more time on time-to-first-audio and the speech
+  pipeline than on squeezing another few points of intelligence out of the model.
+  For voice, responsiveness is part of intelligence.
+- **Real calls are messy.** The demo worked; real calls were different. People
+  talked over the agent. There was background noise, hold music, an IVR answering
+  instead of a person, and sometimes just silence. The happy-path conversation
+  was the easiest 20% of the problem.
+- **Knowing when to stop matters.** An agent shouldn't keep trying to save every
+  conversation. If someone is clearly uninterested, the best action is often to
+  thank them, end the call, and record the outcome. We needed explicit rules
+  around disengagement, retries, silence, and handoff, and that turned out to be
+  as important as the dialogue itself.
 
 ## Outcome
 
-{/* TODO(rishab): fill with real numbers, or describe qualitatively and say so. */}
+The system handled the first qualification call and separated the leads that
+needed human attention from the ones that didn't. The useful output wasn't just a
+transcript: an interested lead moved toward a human follow-up with structured
+requirements attached, while the rest came back with a clean outcome and notes
+instead of another manual task in the queue.
 
 ## What I'd redesign
 
-{/* TODO(rishab): two or three sentences. */}
+If I were rebuilding it today, I wouldn't start by making the agent more
+conversational. I'd start with the voice pipeline and failure handling, and
+optimise for:
+
+1. Faster time-to-first-audio.
+2. Better interruption detection.
+3. More deterministic call-state management.
+4. Stronger handling of silence, IVRs, and call drops.
+5. Clearer confidence thresholds for human handoff.
+6. Better structured outputs for the CRM.
+
+The biggest lesson: voice agents aren't chatbots that happen to speak. A phone
+conversation has its own engineering constraints. Latency, interruptions,
+silence, turn-taking, and knowing when to stop are not edge cases. They are the
+product.
