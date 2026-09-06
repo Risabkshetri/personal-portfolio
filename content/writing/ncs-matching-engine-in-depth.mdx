@@ -6,14 +6,6 @@ summary: "How a college RAG experiment became a job-matching and skill-gap engin
 draft: false
 ---
 
-> **Framing note.** This describes the engineering: the matching approach, the
-> skill-gap modelling, and the data constraints. It does not claim usage numbers
-> or government endorsement. "Integrated with the NCS ecosystem" is accurate;
-> anything stronger is not. Implementation details of government systems are
-> deliberately left out.
-
-## Where this started
-
 I did not set out to build employment infrastructure. I set out to stop
 answering the same question.
 
@@ -124,28 +116,11 @@ The flow: ingestion and parsing, structured profile and job representation,
 embeddings and retrieval, matching, requirement comparison, gap analysis,
 recommendations.
 
-<Figure caption="High-level flow. Structured representation sits before retrieval, and deterministic constraint checks sit after it.">
-
-```
-resume / profile (sparse, free-text)
-        |
-        v
- ingestion + parsing
-        |
-        v
- structured representation  ->  canonical skills, evidence strength
-        |
-        v
- embeddings + retrieval  ->  candidate roles
-        |
-        v
- constraint checks + scoring  ->  ranked matches
-        |
-        v
- requirement comparison  ->  ranked gaps for a target role
-```
-
-</Figure>
+<Figure
+  src="/ncs_integration.png"
+  alt="Six-stage flow: resume/profile ingestion and parsing, structured representation with canonical skills and evidence strength, embeddings and retrieval to candidate roles, constraint checks and scoring to ranked matches, and requirement comparison to ranked skill gaps for a target role."
+  caption="High-level flow. Structured representation sits before retrieval, and deterministic constraint checks sit after it."
+/>
 
 The decision that mattered most was separating data representation from
 generation. The LLM is not the database and not the source of truth about a
