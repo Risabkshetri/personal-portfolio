@@ -3,12 +3,138 @@ title: "Honest unit economics of a small AI automation studio"
 date: "2026-09-03"
 stream: "field-notes"
 summary: "What it actually costs to deliver AI automation at ₹1L+/month revenue: model spend, delivery time, and the maintenance tail nobody prices in."
-draft: true
+draft: false
 ---
 
-{/* TODO(rishab): the honest version, revenue composition, gross margin per
-engagement, where model spend actually lands, how much time delivery vs
-maintenance takes, what you underpriced. Keep the revenue framing exact: "₹1L+
-/month", not "MRR" unless it's genuinely recurring. */}
+AI automation studios look deceptively simple from the outside.
 
-Draft in progress.
+A client pays ₹50,000 for an automation. You connect a few APIs, build an agent,
+deploy it, and move on to the next project.
+
+But revenue is not profit.
+
+When you're running a small studio, the real unit economics are determined by
+much more than API costs.
+
+## The real cost of an AI automation project
+
+For every project, we think about five layers of cost.
+
+### 1. Acquisition
+
+Finding the client takes time. Cold outreach, calls, networking, demos,
+proposals, follow-ups, and sometimes multiple conversations happen before a
+project is signed.
+
+If it takes 20 conversations to win one ₹50,000 project, those 20 conversations
+are part of the acquisition cost, even if no money was directly spent on
+advertising.
+
+### 2. Engineering
+
+This is usually the largest hidden cost. A seemingly simple workflow can involve:
+
+- API integrations
+- Authentication
+- Database design
+- Background jobs
+- LLM orchestration
+- Prompt engineering
+- Error handling
+- Monitoring
+- Deployment
+- Testing
+- Client-specific edge cases
+
+The first version may take two days. Making it reliable can take two weeks.
+
+### 3. AI and infrastructure
+
+LLM calls are only one component. There can also be costs for:
+
+- Model APIs
+- Web search
+- Voice APIs
+- Hosting
+- Databases
+- Vector storage
+- Queues and Redis
+- Email, SMS, WhatsApp
+- Monitoring and logging
+
+The mistake is optimising only the token bill while ignoring the infrastructure
+around the model.
+
+### 4. Support and maintenance
+
+A project doesn't necessarily end when it goes live. Clients will discover new
+edge cases. APIs will change. Credentials will expire. A workflow will
+occasionally fail, and someone has to investigate it.
+
+If maintenance isn't priced into the business model, the founder eventually
+becomes the unpaid support team.
+
+### 5. Founder time
+
+This is the cost most small studios ignore. When the founder does sales, solution
+design, engineering, deployment, customer support, and account management, a
+₹50,000 project can look highly profitable.
+
+But if the project consumes 60 to 80 hours of founder time, the economics look
+very different.
+
+## Revenue per project isn't the metric
+
+A better way to think about the business is:
+
+**Contribution margin = project revenue - variable delivery costs**
+
+Then separately track:
+
+**Founder-adjusted profit = contribution margin - cost of founder time**
+
+This gives a much more honest picture.
+
+For example, imagine a ₹60,000 automation project. If direct software and
+infrastructure costs are ₹8,000, it initially looks like:
+
+**₹60,000 - ₹8,000 = ₹52,000**
+
+But suppose delivery requires 50 hours. At an internal founder cost of
+₹1,000/hour:
+
+**50 × ₹1,000 = ₹50,000**
+
+The apparent ₹52,000 margin becomes only **₹2,000 of economic profit**.
+
+That doesn't mean the project was bad. It means the studio needs to either charge
+more, deliver faster, reuse more components, reduce customisation, or increase
+the lifetime value of the client.
+
+## This changes how we build
+
+The goal isn't to build every client project from scratch. We are increasingly
+thinking in terms of reusable infrastructure:
+
+> reusable agent patterns -> reusable integrations -> reusable deployment ->
+> reusable monitoring -> reusable workflows
+
+Every project should make the next project cheaper and faster to deliver. That's
+where a small AI studio starts becoming a real business rather than a collection
+of freelance projects.
+
+## The metric we care about
+
+The question isn't:
+
+> **"How much did we charge?"**
+
+It's:
+
+> **"How much value can we deliver per unit of founder time?"**
+
+If we can move from ₹30K projects taking 40 hours to ₹1L projects taking 20
+hours, the business changes dramatically. The AI model is only one part of that
+equation.
+
+**The real moat of a small automation studio is operational leverage.**
