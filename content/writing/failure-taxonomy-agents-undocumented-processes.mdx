@@ -3,12 +3,107 @@ title: "A failure taxonomy for agents in undocumented processes"
 date: "2026-09-02"
 stream: "field-notes"
 summary: "What actually breaks when you put agents into WhatsApp-run, person-dependent business processes, categorised from real deployments."
-draft: true
+draft: false
 ---
 
-{/* TODO(rishab): this is one of the four pieces that turns the site from a
-résumé into a reason to email you. Build the taxonomy from your real Zobique Labs
-engagements: category, what triggers it, how it presents, how you caught it, the
-fix. */}
+One thing I've started noticing while building AI agents: the hardest workflows
+aren't always the most technically complex ones.
 
-Draft in progress.
+Sometimes the workflow is just:
+
+> receive something -> understand it -> make a decision -> update something ->
+> tell someone.
+
+Technically, that's not very difficult. The problem is that **nobody has actually
+documented how the business does it.** The real process lives inside someone's
+head.
+
+So when the agent fails, saying *"the agent made a mistake"* isn't very useful.
+I've started thinking about these failures in a few categories.
+
+## 1. Missing context
+
+The agent simply doesn't have enough information.
+
+A human employee might know that a particular customer, company, or request
+requires special treatment because they've seen it 20 times before. The agent
+sees a database row. The same information technically exists, but the operational
+context doesn't.
+
+## 2. Ambiguous rules
+
+A process might have rules like:
+
+> "Usually do X, unless it's a large customer."
+
+Okay. What counts as large? Who decides? What happens if the customer is
+borderline?
+
+Humans resolve these ambiguities naturally. Agents don't. If the rule isn't
+explicit, the model ends up guessing.
+
+## 3. Hidden exceptions
+
+This is probably the most common one.
+
+The documented process says:
+
+> A -> B -> C
+
+But the actual process is:
+
+> A -> B -> C -> unless X -> then D -> unless it's Friday -> ask someone ->
+> unless customer is important.
+
+These exceptions are often invisible until production. And this is where demos
+become misleading.
+
+## 4. Tool failure
+
+Sometimes the agent actually understands what needs to happen. The problem is the
+tool.
+
+API timeout. Wrong schema. Expired credential. Missing field. Rate limit.
+
+From the outside, it looks like an AI failure. It isn't. It's an infrastructure
+failure.
+
+## 5. Wrong decision, correct reasoning
+
+This one is interesting. The agent can produce a perfectly reasonable explanation
+and still make the wrong business decision, because the underlying policy was
+wrong, incomplete, or outdated.
+
+Good reasoning doesn't compensate for bad business rules.
+
+## 6. Human handoff failure
+
+Eventually, some cases need a human. That's not necessarily a failure. The
+failure is when the agent doesn't know **when to stop**.
+
+A good agent should know:
+
+> "I don't have enough confidence to continue. Someone should take over."
+
+Knowing when **not** to act is part of intelligence too.
+
+## What I'm learning
+
+When an agent fails in an undocumented process, the first instinct is usually:
+
+> better prompt -> better model -> better agent.
+
+I'm becoming less convinced that's the right answer. Sometimes the problem isn't
+the model. It's that the business process itself hasn't been made explicit.
+
+Before automating a messy workflow, we probably need to understand the workflow
+better than the people who originally created it. That means observing the
+exceptions, documenting decisions, finding hidden dependencies, and understanding
+where humans use judgment.
+
+Only then does it make sense to ask:
+
+> **"Which parts should an agent actually own?"**
+
+That's probably a more useful starting point for building reliable agents than
+simply asking which model to use.
