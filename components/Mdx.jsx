@@ -21,10 +21,17 @@ const components = {
     );
   },
   // A simple labelled figure for architecture diagrams (SVG / image / ascii).
-  Figure: ({ caption, children }) => (
+  // Pass `src` (+ optional `alt`) to render an image, or nest children for
+  // inline SVG / ascii diagrams.
+  Figure: ({ caption, src, alt = "", children }) => (
     <figure className="my-8">
       <div className="overflow-x-auto border border-black-100/10 bg-white p-5">
-        {children}
+        {src ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={src} alt={alt} className="mx-auto block h-auto max-w-full" />
+        ) : (
+          children
+        )}
       </div>
       {caption && (
         <figcaption className="mt-2 text-[13px] text-secondary">{caption}</figcaption>
