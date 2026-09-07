@@ -25,7 +25,7 @@ const segments = [
   },
   {
     heading: "Investors & programs",
-    body: "I'm an early-revenue, pre-seed technical founder: government-integrated technology, ₹1L+/month from the studio, university pilots, all built while finishing a B.Tech. Interested in fellowships, accelerators, and programs that get me closer to founders and researchers building at a larger scale, particularly in the US.",
+    body: "I'm a pre-seed technical founder: government-integrated technology, AI agents running in production inside real businesses, university pilots, all built while finishing a B.Tech. Interested in fellowships, accelerators, and programs that get me closer to founders and researchers building at a larger scale, particularly in the US.",
     action: { label: site.email, href: `mailto:${site.email}?subject=Programs` },
   },
 ];
