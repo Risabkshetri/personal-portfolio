@@ -20,8 +20,9 @@ export default function AboutPage() {
           engine that is integrated with India&rsquo;s National Career Service
           (NCS), piloted a career-intelligence platform across two universities
           and 1,500+ students, and shipped automation systems for real
-          businesses. I run Zobique Labs, an AI automation studio at ₹1L+/month.
-          I&rsquo;m 20, from Nepal, and I did all of this while finishing my
+          businesses. I run Zobique Labs, an AI automation studio whose agents
+          run in production inside real businesses. I&rsquo;m 20, from Nepal, and I did
+          all of this while finishing my
           B.Tech in Computer Science at Manav Rachna in India.
         </p>
 

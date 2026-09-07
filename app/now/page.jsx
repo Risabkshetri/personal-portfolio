@@ -20,12 +20,11 @@ export default function NowPage() {
       <div className="prose-body max-w-prose">
         <h2>Zobique Labs</h2>
         <p>
-          Growing the AI automation studio. It&rsquo;s at ₹1L+/month and the
-          current focus is making delivery repeatable: turning the recurring
+          Growing the AI automation studio. Its agents are running in production
+          inside real businesses, and the current focus is making delivery
+          repeatable: turning the recurring
           engagements (lead qualification, telecalling, internal knowledge
           systems) into a tighter delivery process instead of bespoke every time.
-          {/* TODO(rishab): confirm the exact revenue framing. Is it recurring? If
-          not, keep it as "₹1L+/month", not "MRR". */}
         </p>
 
         <h2>Turning services into products</h2>
