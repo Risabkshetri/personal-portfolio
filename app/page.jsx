@@ -15,8 +15,8 @@ const proof = [
     href: "/deployments/ncs-job-matching-engine",
   },
   {
-    label: "Revenue",
-    value: "Zobique Labs at ₹1L+/month",
+    label: "Production agents",
+    value: "Running inside real businesses",
     href: "/now",
   },
   {
@@ -51,8 +51,9 @@ export default function HomePage() {
           <p className={`${styles.heroSubText} mt-6`}>
             I build AI systems that get deployed. The job-matching and skill-gap
             engine I built is integrated with India&rsquo;s National Career
-            Service (NCS). I run Zobique Labs, an AI automation studio doing
-            ₹1L+/month, while finishing my B.Tech.
+            Service (NCS). I run Zobique Labs, an AI automation studio whose
+            agents run in production inside real businesses, while finishing
+            my B.Tech.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
