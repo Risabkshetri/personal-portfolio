@@ -1,0 +1,147 @@
+---
+title: "Why voice agents feel robotic"
+date: "2026-09-17"
+stream: "engineering"
+summary: "A voice agent is not a chatbot that happens to speak. It is at least six coupled systems running under a latency budget measured in milliseconds, and most of what makes an agent feel robotic traces back to how those systems are stitched together."
+draft: false
+---
+
+Most people imagine voice AI as a single exchange: you speak, the system
+understands, it replies. Building one taught me that this exchange is powered
+by a stack of specialized systems running in parallel under a latency budget
+most software never has to think about. Understanding what happens behind that
+one exchange is the first step to understanding why so many voice agents still
+sound robotic, and what it actually takes to fix that.
+
+## The stack behind one exchange
+
+A production voice agent is not one model. It is at least six coupled systems,
+each with its own latency, its own failure modes, and its own trade-offs:
+
+- **STT (speech-to-text).** Converts spoken audio into text.
+- **TTS (text-to-speech).** Converts generated text back into natural-sounding
+  speech.
+- **VAD (voice activity detection).** Identifies when a person is actually
+  speaking versus background noise.
+- **Telephony.** The infrastructure that carries the call itself.
+- **Reasoning (LLM).** The model that interprets intent and generates a
+  response.
+- **Agents / execution.** The layer that takes action, updating a CRM,
+  checking availability, triggering a workflow.
+
+Stitching those together well is most of the engineering difficulty, and it is
+also where robotic behaviour quietly creeps in. This is roughly the shape of
+what I ended up building for a real-estate lead-qualification agent: a
+realtime voice engine sitting between telephony and an async backend, with
+separate workers handling dialling and structured extraction so the call
+itself never blocks on slower work.
+
+<Figure
+  src="/voice_agent.png"
+  alt="Architecture diagram: browser talks HTTP to a Next.js frontend, which talks to a backend SaaS API over HTTP; Twilio connects over WebSocket to a realtime voice engine, which calls speech-to-text, LLM, and text-to-speech APIs and streams embeddings to a Gemini API; a dial worker and an extraction worker poll a shared PostgreSQL database and communicate with the realtime engine through an AgentRuntimeConfig seam."
+  caption="The realtime voice engine is deliberately separated from the backend SaaS API and the async workers. The call path stays fast; everything that can wait, waits."
+/>
+
+## What "robotic" actually means
+
+When people say a voice agent sounds robotic, they rarely mean just the tone
+of the synthesized voice. Almost every time, it traces back to one of five
+structural issues.
+
+**Acoustic degradation and telephony compression.** Phone networks compress
+and degrade audio in ways clean, studio-quality training data never accounts
+for. Background noise, hold music, an IVR answering instead of a person,
+sometimes just silence. Distorted or ambiguous audio reaches the STT engine
+before the conversation has even started, and every downstream stage inherits
+that error.
+
+**Latency across the full stack.** Natural conversation runs on split-second
+timing. Once the combined delay across STT, reasoning, and TTS creeps past a
+few hundred milliseconds, the pause becomes noticeable and the exchange starts
+to feel mechanical. On a screen, a two-second delay reads as a loading state.
+On a phone call, it reads as the system being broken. Voice is the one
+interface where responsiveness is not a nice-to-have, it is part of what the
+listener perceives as intelligence.
+
+**Turn-taking and barge-in.** Real conversations are messy. People interrupt,
+trail off, talk over each other. An agent that cannot detect and handle
+barge-in gracefully either keeps talking over the caller or freezes mid
+response, and either one breaks the illusion immediately. Handling this
+correctly means the audio pipeline has to be listening and ready to cut off
+generation while it is still speaking, not just between turns.
+
+**Multi-intent and unstructured context.** Real callers rarely ask one clean
+question at a time. They combine intents in a single sentence, backtrack,
+change direction mid-call. An agent that only tracks the current turn loses
+the thread and gives answers that feel disconnected from what was actually
+said two sentences earlier.
+
+**Execution coupled to conversation.** A voice agent is often expected to do
+more than talk: look something up, check a calendar, write structured notes
+back to a CRM. When execution and conversation are not cleanly separated, a
+slow database write or a dead API call stalls the dialogue, and the caller
+hears the stall as dead air.
+
+None of these are model-quality problems. They are systems-engineering
+problems, and they are the actual reason an agent feels lifeless even when the
+underlying models are individually impressive.
+
+## What actually fixes it
+
+**Pick the right model for each job, not one model for everything.** Very few
+teams build their own STT or TTS in-house; the investment is enormous and the
+return, relative to buying it, is poor. The real work is evaluating providers
+per component against four criteria that trade off against each other:
+accuracy, cost, speed, and language support. A provider that is excellent for
+English STT can be mediocre for a regional language, which matters a great
+deal if the calls are not all in English.
+
+**Build a parallelized, streaming pipeline, not a request-response chain.**
+Waiting for each stage to fully finish before starting the next adds up
+whole-sentence delays. A pipeline built on continuous WebSocket connections
+can start LLM inference on partial transcripts as they arrive and stream TTS
+output in small audio chunks, often before the model has finished generating
+the full sentence. This is the single highest-leverage change for perceived
+responsiveness, more than swapping to a faster model.
+
+**Use VAD to filter noise, not just to detect speech.** Without a proper VAD
+layer, a system treats any sharp sound as an interruption, which is a real
+problem on calls made from crowded metros, moving vehicles, or open offices.
+A robust VAD layer is what lets the agent tell genuine speech from ambient
+noise instead of getting derailed by every passing sound, and it is usually
+underinvested relative to STT and TTS.
+
+**Separate reasoning from execution.** Conversation and action are different
+jobs and belong in different processes. In the diagram above, the realtime
+voice engine only holds the call open; a dial worker and an extraction worker
+handle outbound dialling and structured field extraction on their own
+schedule, polling the same database rather than sitting in the call's
+critical path. The realtime engine and the backend talk through a narrow
+config seam instead of a shared call stack. That separation is what keeps a
+slow CRM write from ever becoming dead air on the line.
+
+**Track dialogue state explicitly.** This is the most business-critical piece
+and the easiest to underrate. What the agent says matters more than how it
+says it. One incorrect statement about a price, a property, or a policy can
+break trust in a single sentence and send a lead straight to a competitor.
+Explicit dialogue state tracking gives the reasoning layer a persistent,
+accurate memory of what has actually been said and confirmed in this call,
+rather than letting the model reconstruct it from a raw transcript on every
+turn. It is what protects correctness at scale, once the interesting part of
+the demo is no longer "does it sound human" but "did it say the right thing."
+
+## The bigger picture
+
+None of these five failure modes exist in isolation, and none of the fixes
+work in isolation either. A voice agent only feels natural when acoustic
+handling, latency, turn-taking, context tracking, and execution are engineered
+together as one system, not bolted on as five separate features on top of a
+single model call. The hard part was never getting a demo call to sound
+convincing. It was making the same call work on the two hundredth attempt,
+against real phone networks, real interruptions, and real silence.
+
+## Links
+
+- [AI voice agent for real-estate lead qualification](/deployments/ai-telecalling-system),
+  the deployment this architecture is drawn from
+- [Source on GitHub](https://github.com/Risabkshetri/AI-Telecalling)
