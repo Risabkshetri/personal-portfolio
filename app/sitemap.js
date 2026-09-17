@@ -1,11 +1,23 @@
 import { site } from "../lib/site";
 import { getAllPosts, getAllDeployments } from "../lib/content";
 
+// Static routes have no per-page frontmatter date, so each one is pinned to
+// the date its content was last actually edited (from git history) rather
+// than `new Date()`, which reported "changed right now" on every crawl.
+const STATIC_ROUTE_UPDATED = {
+  "": "2026-09-07",
+  "/deployments": "2026-09-06",
+  "/writing": "2026-09-06",
+  "/now": "2026-09-07",
+  "/about": "2026-09-07",
+  "/contact": "2026-09-07",
+};
+
 export default function sitemap() {
   const staticRoutes = ["", "/deployments", "/writing", "/now", "/about", "/contact"].map(
     (path) => ({
       url: `${site.url}${path}`,
-      lastModified: new Date(),
+      lastModified: new Date(STATIC_ROUTE_UPDATED[path]),
       changeFrequency: path === "" || path === "/now" ? "weekly" : "monthly",
       priority: path === "" ? 1 : 0.7,
     })
@@ -13,7 +25,7 @@ export default function sitemap() {
 
   const deployments = getAllDeployments().map((d) => ({
     url: `${site.url}/deployments/${d.slug}`,
-    lastModified: new Date(),
+    lastModified: new Date(d.frontmatter.updated || STATIC_ROUTE_UPDATED["/deployments"]),
     changeFrequency: "monthly",
     priority: 0.8,
   }));
