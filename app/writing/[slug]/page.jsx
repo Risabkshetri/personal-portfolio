@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 import { styles } from "../../../lib/styles";
 import { site } from "../../../lib/site";
 import { getAllPosts, getPost } from "../../../lib/content";
 import Mdx from "../../../components/Mdx";
 import JsonLd from "../../../components/JsonLd";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -66,14 +66,14 @@ export default async function PostPage({ params }) {
     <article className={`${styles.container} py-16 sm:py-24`}>
       <JsonLd data={ld} />
 
-      <Link
-        href="/writing"
-        className="inline-flex items-center gap-2 text-[14px] text-secondary hover:text-accent"
-      >
-        <ArrowLeft size={15} /> Writing
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: "Writing", href: "/writing" },
+          { label: title, href: `/writing/${post.slug}` },
+        ]}
+      />
 
-      <header className="mt-6 max-w-prose">
+      <header className="mt-0 max-w-prose">
         <h1 className="font-serif text-[32px] font-semibold leading-tight text-black-100 sm:text-[40px]">
           {title}
         </h1>

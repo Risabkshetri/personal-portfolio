@@ -2,11 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { styles } from "../lib/styles";
-import { site } from "../lib/site";
+import { site, personLd, websiteLd } from "../lib/site";
 import { getAllDeployments, getAllPosts } from "../lib/content";
 import ProofTile from "../components/ProofTile";
 import DeploymentCard from "../components/DeploymentCard";
 import PostCard from "../components/PostCard";
+import JsonLd from "../components/JsonLd";
 
 const proof = [
   {
@@ -42,6 +43,8 @@ export default function HomePage() {
 
   return (
     <div className={`${styles.container} py-16 sm:py-24`}>
+      <JsonLd data={websiteLd} />
+      <JsonLd data={personLd} />
       {/* Positioning */}
       <section className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div className="max-w-2xl">
