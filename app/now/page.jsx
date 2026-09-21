@@ -1,10 +1,21 @@
 import { styles } from "../../lib/styles";
+import { site } from "../../lib/site";
 import PageHeader from "../../components/PageHeader";
+import Breadcrumbs from "../../components/Breadcrumbs";
+
+const title = "Now";
+const description = "What Rishab Chhetri is building and focused on this quarter.";
 
 export const metadata = {
-  title: "Now",
-  description: "What Rishab Chhetri is building and focused on this quarter.",
+  title,
+  description,
   alternates: { canonical: "/now" },
+  openGraph: {
+    type: "website",
+    title: `${title} · ${site.name}`,
+    description,
+    url: `${site.url}/now`,
+  },
 };
 
 // A /now page (nownownow.com convention): what's true right now, kept short.
@@ -13,6 +24,7 @@ const LAST_UPDATED = "September 2026";
 export default function NowPage() {
   return (
     <div className={`${styles.container} py-16 sm:py-24`}>
+      <Breadcrumbs items={[{ label: "Now", href: "/now" }]} />
       <PageHeader kicker={`Updated ${LAST_UPDATED}`} title="Now">
         <p>What I&rsquo;m actually working on this quarter.</p>
       </PageHeader>
