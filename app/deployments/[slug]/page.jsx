@@ -1,11 +1,11 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { styles } from "../../../lib/styles";
 import { site } from "../../../lib/site";
 import { getAllDeployments, getDeployment } from "../../../lib/content";
 import Mdx from "../../../components/Mdx";
 import JsonLd from "../../../components/JsonLd";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 export function generateStaticParams() {
   return getAllDeployments().map((d) => ({ slug: d.slug }));
@@ -52,14 +52,14 @@ export default async function DeploymentPage({ params }) {
     <article className={`${styles.container} py-16 sm:py-24`}>
       <JsonLd data={ld} />
 
-      <Link
-        href="/deployments"
-        className="inline-flex items-center gap-2 text-[14px] text-secondary hover:text-accent"
-      >
-        <ArrowLeft size={15} /> Deployments
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: "Deployments", href: "/deployments" },
+          { label: title, href: `/deployments/${d.slug}` },
+        ]}
+      />
 
-      <header className="mt-6 border-b border-black-100/10 pb-8">
+      <header className="mt-0 border-b border-black-100/10 pb-8">
         <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] uppercase tracking-[0.14em] text-secondary">
           {client && <span>{client}</span>}
           {period && <span className="text-black-100/30">·</span>}

@@ -1,17 +1,30 @@
 import { styles } from "../../lib/styles";
-import { site } from "../../lib/site";
+import { site, personLd } from "../../lib/site";
 import PageHeader from "../../components/PageHeader";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import JsonLd from "../../components/JsonLd";
+
+const title = "About";
+const description =
+  "Rishab Chhetri: from a village in Nepal to building a job-matching engine integrated with India's National Career Service, and running an AI automation studio while finishing a B.Tech.";
 
 export const metadata = {
-  title: "About",
-  description:
-    "Rishab Chhetri: from a village in Nepal to building a job-matching engine integrated with India's National Career Service, and running an AI automation studio while finishing a B.Tech.",
+  title,
+  description,
   alternates: { canonical: "/about" },
+  openGraph: {
+    type: "profile",
+    title: `${title} · ${site.name}`,
+    description,
+    url: `${site.url}/about`,
+  },
 };
 
 export default function AboutPage() {
   return (
     <div className={`${styles.container} py-16 sm:py-24`}>
+      <JsonLd data={personLd} />
+      <Breadcrumbs items={[{ label: "About", href: "/about" }]} />
       <PageHeader kicker="The longer version" title="About" />
 
       <div className="prose-body max-w-prose">

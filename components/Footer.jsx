@@ -1,12 +1,21 @@
+import Link from "next/link";
 import { Linkedin, Github, Twitter } from "lucide-react";
 import TopmateIcon from "./TopmateIcon";
 import { site } from "../lib/site";
 
-const links = [
+const socialLinks = [
   { href: site.socials.linkedin, label: "LinkedIn", Icon: Linkedin },
   { href: site.socials.github, label: "GitHub", Icon: Github },
   { href: site.socials.x, label: "X", Icon: Twitter },
   { href: site.socials.topmate, label: "Topmate", Icon: TopmateIcon },
+];
+
+const siteLinks = [
+  { href: "/about", label: "About" },
+  { href: "/deployments", label: "Deployments" },
+  { href: "/writing", label: "Writing" },
+  { href: "/now", label: "Now" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Footer() {
@@ -24,8 +33,21 @@ export default function Footer() {
             </a>
           </p>
         </div>
+
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
+          {siteLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="text-[13px] font-medium text-secondary hover:text-accent"
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+
         <div className="flex gap-3">
-          {links.map(({ href, label, Icon }) => (
+          {socialLinks.map(({ href, label, Icon }) => (
             <a
               key={label}
               href={href}

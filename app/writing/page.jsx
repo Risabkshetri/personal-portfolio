@@ -1,13 +1,24 @@
 import { styles } from "../../lib/styles";
+import { site } from "../../lib/site";
 import { getAllPosts, WRITING_STREAMS } from "../../lib/content";
 import PageHeader from "../../components/PageHeader";
 import PostCard from "../../components/PostCard";
+import Breadcrumbs from "../../components/Breadcrumbs";
+
+const title = "Writing";
+const description =
+  "Engineering write-ups, field notes from deploying AI into Indian businesses, and research on career technology.";
 
 export const metadata = {
-  title: "Writing",
-  description:
-    "Engineering write-ups, field notes from deploying AI into Indian businesses, and research on career technology.",
+  title,
+  description,
   alternates: { canonical: "/writing" },
+  openGraph: {
+    type: "website",
+    title: `${title} · ${site.name}`,
+    description,
+    url: `${site.url}/writing`,
+  },
 };
 
 export default function WritingPage() {
@@ -15,6 +26,7 @@ export default function WritingPage() {
 
   return (
     <div className={`${styles.container} py-16 sm:py-24`}>
+      <Breadcrumbs items={[{ label: "Writing", href: "/writing" }]} />
       <PageHeader kicker="Index" title="Writing">
         <p>
           Everything lives here first, at{" "}
