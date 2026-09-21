@@ -1,11 +1,10 @@
 import "./globals.css";
 import { Poppins, Newsreader } from "next/font/google";
 import Script from "next/script";
-import { site, sameAs } from "../lib/site";
+import { site } from "../lib/site";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HeroBackground from "../components/HeroBackground";
-import JsonLd from "../components/JsonLd";
 
 // Only the weights actually used in the UI are requested: body is 400,
 // `font-medium` is 500, `font-semibold` is 600. The serif is headings-only and
@@ -61,22 +60,10 @@ export const viewport = {
   themeColor: "#F6F6EF",
 };
 
-const personLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: site.name,
-  url: site.url,
-  jobTitle: "Founder & AI Engineer",
-  worksFor: { "@type": "Organization", name: site.org.name, url: site.org.url },
-  sameAs,
-  description: site.shortBio,
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${poppins.variable} ${newsreader.variable}`}>
       <body className="min-h-screen text-black-100">
-        <JsonLd data={personLd} />
         <HeroBackground />
         <div className="relative z-10 flex min-h-screen flex-col">
           <Navbar />

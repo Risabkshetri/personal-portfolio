@@ -1,12 +1,22 @@
 import { styles } from "../../lib/styles";
 import { site } from "../../lib/site";
 import PageHeader from "../../components/PageHeader";
+import Breadcrumbs from "../../components/Breadcrumbs";
+
+const title = "Contact";
+const description =
+  "How to reach Rishab Chhetri, routed by whether you're a researcher, a potential customer, or an investor or program.";
 
 export const metadata = {
-  title: "Contact",
-  description:
-    "How to reach Rishab Chhetri, routed by whether you're a researcher, a potential customer, or an investor or program.",
+  title,
+  description,
   alternates: { canonical: "/contact" },
+  openGraph: {
+    type: "website",
+    title: `${title} · ${site.name}`,
+    description,
+    url: `${site.url}/contact`,
+  },
 };
 
 const segments = [
@@ -33,6 +43,7 @@ const segments = [
 export default function ContactPage() {
   return (
     <div className={`${styles.container} py-16 sm:py-24`}>
+      <Breadcrumbs items={[{ label: "Contact", href: "/contact" }]} />
       <PageHeader kicker="Different asks, different framing" title="Contact">
         <p>Pick the row that fits. Direct email is always fine: {" "}
           <a href={`mailto:${site.email}`} className="text-accent hover:text-accent-dark">

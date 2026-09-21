@@ -1,13 +1,24 @@
 import { styles } from "../../lib/styles";
+import { site } from "../../lib/site";
 import { getAllDeployments } from "../../lib/content";
 import PageHeader from "../../components/PageHeader";
 import DeploymentCard from "../../components/DeploymentCard";
+import Breadcrumbs from "../../components/Breadcrumbs";
+
+const title = "Deployments";
+const description =
+  "Deep case studies of AI systems built and deployed: the constraint, the architecture, the failure modes, the outcome, and the links to verify it.";
 
 export const metadata = {
-  title: "Deployments",
-  description:
-    "Deep case studies of AI systems built and deployed: the constraint, the architecture, the failure modes, the outcome, and the links to verify it.",
+  title,
+  description,
   alternates: { canonical: "/deployments" },
+  openGraph: {
+    type: "website",
+    title: `${title} · ${site.name}`,
+    description,
+    url: `${site.url}/deployments`,
+  },
 };
 
 export default function DeploymentsPage() {
@@ -15,6 +26,7 @@ export default function DeploymentsPage() {
 
   return (
     <div className={`${styles.container} py-16 sm:py-24`}>
+      <Breadcrumbs items={[{ label: "Deployments", href: "/deployments" }]} />
       <PageHeader kicker="Case studies" title="Deployments">
         <p>
           Systems that got built and shipped. Each one follows the same shape:
