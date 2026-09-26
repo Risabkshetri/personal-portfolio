@@ -58,16 +58,16 @@ export default function HomePage() {
             agents run in production inside real businesses, while finishing
             my B.Tech.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <Link
               href="/deployments"
-              className="inline-flex items-center gap-2 border border-transparent bg-accent px-6 py-3 font-medium text-white transition-colors hover:bg-accent-dark"
+              className="inline-flex w-full items-center justify-center gap-2 border border-transparent bg-accent px-6 py-3 font-medium text-white transition-colors hover:bg-accent-dark sm:w-auto"
             >
               See deployments <ArrowRight size={16} />
             </Link>
             <Link
               href="/contact"
-              className="border border-black-100 px-6 py-3 font-medium text-black-100 transition-colors hover:bg-black-100 hover:text-white"
+              className="inline-flex w-full items-center justify-center border border-black-100 px-6 py-3 font-medium text-black-100 transition-colors hover:bg-black-100 hover:text-white sm:w-auto"
             >
               Contact
             </Link>

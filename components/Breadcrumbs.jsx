@@ -23,13 +23,13 @@ export default function Breadcrumbs({ items }) {
       <JsonLd data={ld} />
       <nav
         aria-label="Breadcrumb"
-        className="mb-6 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[13px] text-secondary"
+        className="mb-6 flex flex-nowrap items-center gap-x-1.5 overflow-hidden text-[13px] text-secondary"
       >
         {trail.map((item, i) => (
           <span key={item.href} className="flex items-center gap-1.5">
             {i > 0 && <span className="text-black-100/30">/</span>}
             {i === trail.length - 1 ? (
-              <span className="text-black-100/70">{item.label}</span>
+              <span className="min-w-0 truncate text-black-100/70">{item.label}</span>
             ) : (
               <Link href={item.href} className="hover:text-accent">
                 {item.label}
