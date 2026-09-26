@@ -73,7 +73,7 @@ export default async function PostPage({ params }) {
         ]}
       />
 
-      <header className="mt-0 max-w-prose">
+      <header className="mt-0">
         <h1 className="font-serif text-[32px] font-semibold leading-tight text-black-100 sm:text-[40px]">
           {title}
         </h1>
@@ -90,11 +90,11 @@ export default async function PostPage({ params }) {
         </div>
       </header>
 
-      <div className="mt-10 max-w-prose">
+      <div className="mt-10">
         <Mdx source={post.body} />
       </div>
 
-      <nav className="mt-16 flex max-w-prose justify-between gap-6 border-t border-black-100/10 pt-6 text-[14px]">
+      <nav className="mt-16 flex justify-between gap-6 border-t border-black-100/10 pt-6 text-[14px]">
         {older ? (
           <Link href={`/writing/${older.slug}`} className="text-accent hover:text-accent-dark">
             ← {older.frontmatter.title}
