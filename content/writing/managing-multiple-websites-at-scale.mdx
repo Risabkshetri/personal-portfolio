@@ -1,0 +1,190 @@
+---
+title: "Managing Multiple Websites at Scale: How Businesses Can Centralize Content, SEO, and Analytics Without Rebuilding Every Site"
+date: "2026-09-26"
+stream: "field-notes"
+summary: "Why running one CMS per website gets operationally expensive as a business grows past two or three sites, and what a centralized content and operations layer changes without forcing every website into the same design."
+draft: false
+---
+
+Ask a marketing team running six or seven websites, client sites for an
+agency, regional sites for a multi-brand company, department sites at a
+university, how content actually gets published, and the honest answer is
+usually a list of workarounds. A different login for each site. A developer
+who has to be looped in for anything past a text edit. An SEO checklist that
+lives in a spreadsheet because no two of the CMSs agree on what a meta
+description field is called. Analytics that means opening four tabs and
+adding the numbers up by hand.
+
+None of that is a technology failure exactly. Each individual site's CMS
+usually works fine on its own. The cost shows up in the seams between them.
+
+## The old model
+
+The default way businesses end up here is entirely reasonable in the
+moment. Website A needs a CMS, so it gets one. Website B needs a CMS, so it
+gets one too, maybe a different one because a different agency built it.
+Repeat for C and D.
+
+<Figure caption="Centralizing content does not mean forcing every website into the same template. In the second model, each connected site keeps its own design, stack, and brand; only content, SEO, and analytics move to one shared layer.">
+  <svg viewBox="0 0 900 440" width="100%" role="img" aria-label="Comparison of separate per-website CMS silos against one centralized content and operations layer">
+    <defs>
+      <marker id="arrowE" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0L10,5L0,10z" fill="#222222" />
+      </marker>
+    </defs>
+
+    <line x1="450" y1="20" x2="450" y2="420" stroke="#6B6B6B" strokeWidth="1" strokeDasharray="4 4" />
+
+    <text x="225" y="35" textAnchor="middle" fontSize="14" fontWeight="600" fill="#222222">The old model</text>
+
+    <rect x="40" y="60" width="150" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="115" y="85" textAnchor="middle" fontSize="11" fill="#222222">Website A</text>
+    <rect x="250" y="60" width="150" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="325" y="85" textAnchor="middle" fontSize="11" fill="#222222">CMS A</text>
+    <line x1="190" y1="80" x2="250" y2="80" stroke="#222222" strokeWidth="1.2" markerEnd="url(#arrowE)" />
+
+    <rect x="40" y="120" width="150" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="115" y="145" textAnchor="middle" fontSize="11" fill="#222222">Website B</text>
+    <rect x="250" y="120" width="150" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="325" y="145" textAnchor="middle" fontSize="11" fill="#222222">CMS B</text>
+    <line x1="190" y1="140" x2="250" y2="140" stroke="#222222" strokeWidth="1.2" markerEnd="url(#arrowE)" />
+
+    <rect x="40" y="180" width="150" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="115" y="205" textAnchor="middle" fontSize="11" fill="#222222">Website C</text>
+    <rect x="250" y="180" width="150" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="325" y="205" textAnchor="middle" fontSize="11" fill="#222222">CMS C</text>
+    <line x1="190" y1="200" x2="250" y2="200" stroke="#222222" strokeWidth="1.2" markerEnd="url(#arrowE)" />
+
+    <rect x="40" y="240" width="150" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="115" y="265" textAnchor="middle" fontSize="11" fill="#222222">Website D</text>
+    <rect x="250" y="240" width="150" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="325" y="265" textAnchor="middle" fontSize="11" fill="#222222">CMS D</text>
+    <line x1="190" y1="260" x2="250" y2="260" stroke="#222222" strokeWidth="1.2" markerEnd="url(#arrowE)" />
+
+    <text x="40" y="320" fontSize="11" fill="#6B6B6B">- duplicated content operations</text>
+    <text x="40" y="342" fontSize="11" fill="#6B6B6B">- separate SEO and analytics per site</text>
+    <text x="40" y="364" fontSize="11" fill="#6B6B6B">- inconsistent governance</text>
+    <text x="40" y="386" fontSize="11" fill="#6B6B6B">- a developer needed for every change</text>
+
+    <text x="675" y="35" textAnchor="middle" fontSize="14" fontWeight="600" fill="#222222">The centralized model</text>
+
+    <rect x="520" y="60" width="310" height="55" rx="8" fill="none" stroke="#FF6600" strokeWidth="1.8" />
+    <text x="675" y="83" textAnchor="middle" fontSize="12" fontWeight="600" fill="#222222">Content + operations layer</text>
+    <text x="675" y="100" textAnchor="middle" fontSize="10" fill="#6B6B6B">content, SEO, and analytics, in one place</text>
+
+    <polyline points="675,115 675,135 500,135" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <line x1="500" y1="135" x2="500" y2="355" stroke="#222222" strokeWidth="1.2" />
+
+    <line x1="500" y1="190" x2="545" y2="190" stroke="#222222" strokeWidth="1.2" markerEnd="url(#arrowE)" />
+    <rect x="545" y="170" width="280" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="685" y="195" textAnchor="middle" fontSize="11" fill="#222222">Website A, own design</text>
+
+    <line x1="500" y1="245" x2="545" y2="245" stroke="#222222" strokeWidth="1.2" markerEnd="url(#arrowE)" />
+    <rect x="545" y="225" width="280" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="685" y="250" textAnchor="middle" fontSize="11" fill="#222222">Website B, own tech stack</text>
+
+    <line x1="500" y1="300" x2="545" y2="300" stroke="#222222" strokeWidth="1.2" markerEnd="url(#arrowE)" />
+    <rect x="545" y="280" width="280" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="685" y="305" textAnchor="middle" fontSize="11" fill="#222222">Website C, own brand</text>
+
+    <line x1="500" y1="355" x2="545" y2="355" stroke="#222222" strokeWidth="1.2" markerEnd="url(#arrowE)" />
+    <rect x="545" y="335" width="280" height="40" rx="6" fill="none" stroke="#222222" strokeWidth="1.2" />
+    <text x="685" y="360" textAnchor="middle" fontSize="11" fill="#222222">Website D, own domain</text>
+  </svg>
+</Figure>
+
+Each choice is locally sensible and the total is not. Content operations get
+duplicated across every install. SEO becomes a separate workflow per site
+instead of one discipline applied everywhere. Analytics fragments across
+whatever each CMS happens to expose. Governance gets inconsistent, one site
+enforces alt text and canonical URLs, another does not, because nobody
+owns the standard across all of them. And every one of those installs adds
+a developer dependency: the moment a non-technical request goes past "edit
+this paragraph," someone has to be paid to touch code.
+
+## What centralizing does not mean
+
+The instinctive fix, one CMS, one template, every site forced onto it, is
+usually worse than the problem. A law firm's site and a product marketing
+site do not want the same layout, the same framework, or even the same
+hosting provider, and a rebrand-by-force is a hard sell to anyone who owns
+one of those sites.
+
+The useful version of centralization keeps the split that actually matters:
+
+> The content, SEO, and operations layer is centralized. The design,
+> framework, and hosting of each website are not.
+
+That is the distinction that makes this workable rather than another
+migration project. A connected website keeps whatever stack it already
+runs, plain HTML, React, Next.js, whatever comes next, and pulls its
+content from the shared layer through an API instead of storing its own
+copy. Nothing about that requires the site to look, or be built, like any
+other site on the same account.
+
+## Who actually has this problem
+
+This is not only a large-enterprise concern. It shows up wherever the same
+organization is responsible for more than two or three separately branded
+or separately built websites:
+
+- **Agencies** managing a dozen or more client sites, where every client
+  wants their own design and the agency wants one place to manage content
+  and SEO across all of them.
+- **Multi-brand companies**, where each brand has its own site and its own
+  identity, but marketing wants consistent SEO discipline and one place to
+  see performance across the portfolio.
+- **Universities and institutions**, where departments and programs each
+  run their own site, often built years apart on different platforms.
+- **Franchises**, where a central marketing team wants consistent, accurate
+  content across many local sites without editing each one by hand.
+- **In-house SEO and marketing teams** managing several domains who are
+  currently stitching together Search Console, Bing Webmaster, and GA4
+  exports by hand for a single view of what is working.
+
+## What actually changes operationally
+
+Three things change when content, SEO, and analytics move off per-site
+installs and onto one layer.
+
+**Publishing stops requiring a developer.** A non-technical editor writes
+and publishes once, in one interface, regardless of which website the
+content belongs to or what that website is built with.
+
+**SEO becomes a discipline instead of a checklist copied between tools.**
+The same rules, meta length limits, canonical URL validation, structured
+data, internal linking, apply identically to every connected site, because
+they are enforced in one place rather than reimplemented per install.
+
+**Analytics becomes one view instead of four tabs.** Search performance and
+traffic across every property gets pulled into one place on a schedule,
+instead of someone manually compiling numbers from separate dashboards
+before a monthly report.
+
+None of that requires standardizing what the websites look like. It
+requires one thing architecturally: content has to live in a system that
+websites read from, rather than a system each website has its own copy of.
+That is a real engineering decision, an API and a tenancy model that keeps
+one organization's websites cleanly separated from another's, a way to
+tell a website when its content changed without it polling constantly, and
+enough SEO and analytics logic that it can be trusted the same way a
+dedicated per-site tool would be.
+
+We wrote up exactly how that gets built, the tenancy model, the API,
+signed webhooks, the SEO and link engine, in
+[Multi-tenant headless CMS architecture](/writing/multi-tenant-headless-cms-architecture),
+which is the technical counterpart to this piece.
+
+## Why this is the direction, not just a preference
+
+The old model does not fail loudly. Each site keeps working on its own,
+which is exactly why the cost stays hidden. It shows up later, as the
+tenth site that needed its own onboarding, the SEO issue that got caught
+on one site and missed on three others because nobody was checking all of
+them the same way, the analytics number that took an afternoon to compile
+because it lived in four separate places.
+
+Centralizing the content and operations layer while leaving every
+website's design alone is not a smaller version of a full CMS migration.
+It is the version that businesses can actually adopt one site at a time,
+without asking anyone to rebuild a site that already works.
