@@ -74,7 +74,7 @@ export default async function DeploymentPage({ params }) {
           {title}
         </h1>
         {constraint && (
-          <p className="mt-4 max-w-prose text-[17px] leading-[1.7] text-black-100/75">
+          <p className="mt-4 text-[17px] leading-[1.7] text-black-100/75">
             {constraint}
           </p>
         )}
@@ -92,12 +92,12 @@ export default async function DeploymentPage({ params }) {
         )}
       </header>
 
-      <div className="mt-10 max-w-prose">
+      <div className="mt-10">
         <Mdx source={d.body} />
       </div>
 
       {outcome && (
-        <div className="mt-10 max-w-prose border-l-2 border-accent bg-white p-5">
+        <div className="mt-10 border-l-2 border-accent bg-white p-5">
           <span className="text-[12px] font-medium uppercase tracking-[0.14em] text-accent">
             Outcome
           </span>
@@ -108,7 +108,7 @@ export default async function DeploymentPage({ params }) {
       )}
 
       {links?.length > 0 && (
-        <div className="mt-10 max-w-prose">
+        <div className="mt-10">
           <span className="text-[12px] font-medium uppercase tracking-[0.14em] text-secondary">
             Links
           </span>

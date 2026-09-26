@@ -27,7 +27,7 @@ export default function AboutPage() {
       <Breadcrumbs items={[{ label: "About", href: "/about" }]} />
       <PageHeader kicker="The longer version" title="About" />
 
-      <div className="prose-body max-w-prose">
+      <div className="prose-body">
         <p>
           I&rsquo;m a technical founder. I built a job-matching and skill-gap
           engine that is integrated with India&rsquo;s National Career Service

@@ -29,7 +29,7 @@ export default function NowPage() {
         <p>What I&rsquo;m actually working on this quarter.</p>
       </PageHeader>
 
-      <div className="prose-body max-w-prose">
+      <div className="prose-body">
         <h2>Zobique Labs</h2>
         <p>
           Growing the AI automation studio. Its agents are running in production

@@ -27,13 +27,22 @@ export default function WritingPage() {
   return (
     <div className={`${styles.container} py-16 sm:py-24`}>
       <Breadcrumbs items={[{ label: "Writing", href: "/writing" }]} />
-      <PageHeader kicker="Index" title="Writing">
-        <p>
-          Everything lives here first, at{" "}
-          <code className="text-[14px]">rishabchhetri.in/writing/…</code>.
-          Cross-posts elsewhere point back to the canonical version.
-        </p>
-      </PageHeader>
+      <PageHeader title="Writing" />
+
+      <nav
+        aria-label="Writing streams"
+        className="mb-14 grid grid-cols-3 divide-x divide-accent/25 border-y border-accent/40"
+      >
+        {WRITING_STREAMS.map((stream) => (
+          <a
+            key={stream.id}
+            href={`#${stream.id}`}
+            className="px-2 py-3 text-center text-[12px] font-medium text-secondary transition-colors hover:text-accent sm:px-4 sm:text-[14px]"
+          >
+            {stream.title}
+          </a>
+        ))}
+      </nav>
 
       {WRITING_STREAMS.map((stream) => {
         const streamPosts = posts.filter(
@@ -41,11 +50,17 @@ export default function WritingPage() {
         );
         if (streamPosts.length === 0) return null;
         return (
-          <section key={stream.id} className="mb-16">
-            <h2 className="font-serif text-[22px] font-semibold text-black-100">
-              {stream.title}
-            </h2>
-            <p className="mt-1 text-[14px] text-secondary">{stream.blurb}</p>
+          <section
+            key={stream.id}
+            id={stream.id}
+            className="mb-16 scroll-mt-24 border-t border-accent/40 pt-6"
+          >
+            <div className="border-b border-accent/25 pb-4">
+              <h2 className="font-serif text-[22px] font-semibold text-accent">
+                {stream.title}
+              </h2>
+              <p className="mt-1 text-[14px] text-secondary">{stream.blurb}</p>
+            </div>
             <div className="mt-4">
               {streamPosts.map((p) => (
                 <PostCard key={p.slug} {...p} />
