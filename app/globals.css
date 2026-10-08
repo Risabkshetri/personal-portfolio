@@ -120,6 +120,19 @@ a {
   border-top: 1px solid rgba(34, 34, 34, 0.12);
   margin: 2.5rem 0;
 }
+/* Horizontal scroll container for anything wider than the column:
+   markdown tables and the inline-SVG figures. */
+.prose-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.prose-body .prose-scroll {
+  margin: 1.5rem 0;
+}
+.prose-body .prose-scroll table {
+  margin: 0;
+}
 .prose-body table {
   width: 100%;
   border-collapse: collapse;
@@ -134,6 +147,27 @@ a {
 }
 .prose-body th {
   background: #ffffff;
+}
+/* On narrow screens let columns keep a readable width and scroll the
+   wrapper instead of squeezing every cell to one word per line. */
+@media (max-width: 700px) {
+  .prose-body .prose-scroll table {
+    width: auto;
+    min-width: 100%;
+  }
+  .prose-body .prose-scroll th,
+  .prose-body .prose-scroll td {
+    min-width: 10.5rem;
+  }
+  .prose-body .prose-scroll th:first-child,
+  .prose-body .prose-scroll td:first-child {
+    min-width: 6rem;
+  }
+}
+/* Figures keep their drawn size and scroll rather than shrinking the
+   labels into illegibility on a phone. */
+.prose-body figure .prose-scroll > svg {
+  min-width: 600px;
 }
 .heading-anchor {
   color: #828282;
