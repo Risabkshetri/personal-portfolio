@@ -311,8 +311,9 @@ Webhook delivery and SEO work only start after that commit succeeds, so a
 transaction that fails never notifies a website of a change that did not
 happen.
 
-That outbox row is the whole trick, and it is a standard pattern
-(transactional outbox) applied literally: the notification is written in
+That outbox row is the whole trick, and it is the standard
+[transactional outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html)
+applied literally: the notification is written in
 the same transaction as the change it describes, so the two can never
 disagree. A scheduled job then claims due rows with `FOR UPDATE SKIP
 LOCKED` under a 60-second lock, so multiple workers never double-send, and
@@ -483,13 +484,16 @@ is.
 
 A few limitations are current, not permanent. The link engine loads an
 organization's live content profiles into memory to score candidates,
-which is fine for a few thousand items and would need `pgvector` beyond
+which is fine for a few thousand items and would need
+[`pgvector`](https://github.com/pgvector/pgvector) beyond
 that. The webhook replay store and the rate limiter are both in-process by
 default; either needs to move to Redis before running multiple application
 instances against real traffic. Google has no indexing API for ordinary
-pages, only for job postings and broadcast events, so requesting indexing
-for a normal article is still a manual click through Search Console rather
-than an API call, no matter how the rest of the pipeline is automated.
+pages: the [Indexing API](https://developers.google.com/search/apis/indexing-api/v3/quickstart)
+accepts only pages carrying `JobPosting`, or `BroadcastEvent` embedded in a
+`VideoObject`, which is to say job listings and livestreams. Requesting indexing
+for a normal article is still a manual click through Search Console rather than
+an API call, no matter how the rest of the pipeline is automated.
 
 One limitation is deliberate rather than current: the link engine will
 never write a new sentence to create somewhere to put a link. That was a
@@ -511,6 +515,18 @@ The business version of that argument, who this actually matters for and
 what changes operationally when content moves off per-site installs, is in
 [Managing multiple websites at scale](/writing/managing-multiple-websites-at-scale).
 
-## Links
+## Related reading
 
-- Built as part of the AI automation and infrastructure work at Zobique Labs
+- [Managing multiple websites at scale](/writing/managing-multiple-websites-at-scale)
+  — the same argument without the implementation detail: who has this problem and
+  what changes operationally. Start there if you are deciding whether to build or
+  buy rather than how to build.
+- [The process is the product](/writing/the-process-is-the-product) — why the
+  repeatable part of client work is the thing worth building once.
+- [Unit economics of a small AI studio](/writing/unit-economics-small-ai-studio)
+  — the cost argument underneath "build it once as infrastructure".
+
+Unified CMS is internal platform work at [Zobique Labs](https://labs.zobique.com).
+If you are building something similar and want to compare notes on the tenancy
+model or the outbox, [write to me](/contact) — I am more interested in where this
+design breaks than in where it holds.
