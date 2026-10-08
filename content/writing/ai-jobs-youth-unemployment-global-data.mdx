@@ -177,17 +177,46 @@ on Indian universities](/writing/india-ai-first-universities-data).)
 
 The structural explanation is demographic, and it splits the world in two:
 
-```
-GLOBAL NORTH                          GLOBAL SOUTH
-(North America, EU, East Asia)        (Sub-Saharan Africa, South Asia)
-------------------------------        --------------------------------
-Ageing workforce                      Youth bulge
-Labour SHORTAGE                       Labour ABSORPTION failure
-Retain older workers                  Informal work as default
-Automate aggressively                 Brain drain accelerates
-Need: adult reskilling                Need: scalable foundational
-                                            and vocational education
-```
+<Figure caption="Two demographic regimes, two different problems. A policy that works on one side of this split does not transfer to the other.">
+  <svg viewBox="0 0 680 290" width="100%" role="img" aria-label="Side by side comparison of the labour market problem in the Global North and the Global South">
+    <rect x="0" y="8" width="326" height="222" rx="2" fill="#f8fafc" stroke="#cbd5e1" />
+    <rect x="354" y="8" width="326" height="222" rx="2" fill="#f8fafc" stroke="#cbd5e1" />
+    <rect x="0" y="8" width="326" height="4" fill="#1d4fd8" />
+    <rect x="354" y="8" width="326" height="4" fill="#b45309" />
+
+    <text x="16" y="36" fontSize="12.5" fontWeight="600" fill="#0f172a">GLOBAL NORTH</text>
+    <text x="16" y="54" fontSize="11" fill="#64748b">North America, EU, East Asia</text>
+    <text x="370" y="36" fontSize="12.5" fontWeight="600" fill="#0f172a">GLOBAL SOUTH</text>
+    <text x="370" y="54" fontSize="11" fill="#64748b">Sub-Saharan Africa, South Asia</text>
+    <line x1="16" y1="66" x2="310" y2="66" stroke="#e2e8f0" strokeWidth="1.5" />
+    <line x1="370" y1="66" x2="664" y2="66" stroke="#e2e8f0" strokeWidth="1.5" />
+    <circle cx="22" cy="86" r="2.5" fill="#1d4fd8" />
+    <text x="34" y="90" fontSize="12" fill="#334155">Ageing workforce</text>
+    <circle cx="376" cy="86" r="2.5" fill="#b45309" />
+    <text x="388" y="90" fontSize="12" fill="#334155">Youth bulge</text>
+    <circle cx="22" cy="112" r="2.5" fill="#1d4fd8" />
+    <text x="34" y="116" fontSize="12" fill="#334155">Labour SHORTAGE</text>
+    <circle cx="376" cy="112" r="2.5" fill="#b45309" />
+    <text x="388" y="116" fontSize="12" fill="#334155">Labour ABSORPTION failure</text>
+    <circle cx="22" cy="138" r="2.5" fill="#1d4fd8" />
+    <text x="34" y="142" fontSize="12" fill="#334155">Retain older workers</text>
+    <circle cx="376" cy="138" r="2.5" fill="#b45309" />
+    <text x="388" y="142" fontSize="12" fill="#334155">Informal work as default</text>
+    <circle cx="22" cy="164" r="2.5" fill="#1d4fd8" />
+    <text x="34" y="168" fontSize="12" fill="#334155">Automate aggressively</text>
+    <circle cx="376" cy="164" r="2.5" fill="#b45309" />
+    <text x="388" y="168" fontSize="12" fill="#334155">Brain drain accelerates</text>
+    <rect x="16" y="182" width="294" height="36" rx="2" fill="#eff5ff" />
+    <text x="26" y="196" fontSize="11" fontWeight="600" fill="#1d4fd8">Need: adult reskilling at scale,</text>
+    <text x="26" y="211" fontSize="11" fontWeight="600" fill="#1d4fd8">inside and alongside employment</text>
+    <rect x="370" y="182" width="294" height="36" rx="2" fill="#fffbeb" />
+    <text x="380" y="196" fontSize="11" fontWeight="600" fill="#b45309">Need: scalable foundational and</text>
+    <text x="380" y="211" fontSize="11" fontWeight="600" fill="#b45309">vocational education</text>
+
+    <text x="0" y="258" fontSize="11" fill="#64748b">The North is short of workers and automating to cope. The South has the workers and cannot absorb them.</text>
+    <text x="0" y="276" fontSize="11" fill="#64748b">Same technology, opposite constraint.</text>
+  </svg>
+</Figure>
 
 These are not the same problem and they do not have the same solution. A policy
 imported from one side to the other will fail.
@@ -220,12 +249,33 @@ percent of that workforce; Germany is the fastest-growing hub.
 
 The World Bank frames regional capacity to participate as the **4Cs**:
 
-```
-CONNECTIVITY  ->  infrastructure to reach the work
-COMPUTE       ->  data centres to do the work
-CONTEXT       ->  local data to make the work relevant
-COMPETENCY    ->  skills to perform the work
-```
+<Figure caption="The World Bank's 4Cs. Source: World Bank, Digital Progress and Trends 2025.">
+  <svg viewBox="0 0 680 212" width="100%" role="img" aria-label="The four Cs of regional capacity to participate in the AI economy: connectivity, compute, context and competency">
+    <text x="0" y="14" fontSize="11" fontWeight="600" fill="#0f172a" letterSpacing="0.6">REGIONAL CAPACITY TO PARTICIPATE IN THE AI ECONOMY</text>
+    <rect x="0" y="30" width="168" height="34" rx="2" fill="#1d4fd8" />
+    <text x="14" y="52" fontSize="11.5" fontWeight="600" fill="#ffffff" letterSpacing="0.5">CONNECTIVITY</text>
+    <path d="M178 47 H 206" stroke="#94a3b8" strokeWidth="1.5" />
+    <path d="M206 47 l -6 -4 v 8 Z" fill="#94a3b8" />
+    <text x="218" y="52" fontSize="12" fill="#334155">infrastructure to reach the work</text>
+    <rect x="0" y="72" width="168" height="34" rx="2" fill="#1d4fd8" />
+    <text x="14" y="94" fontSize="11.5" fontWeight="600" fill="#ffffff" letterSpacing="0.5">COMPUTE</text>
+    <path d="M178 89 H 206" stroke="#94a3b8" strokeWidth="1.5" />
+    <path d="M206 89 l -6 -4 v 8 Z" fill="#94a3b8" />
+    <text x="218" y="94" fontSize="12" fill="#334155">data centres to do the work</text>
+    <rect x="0" y="114" width="168" height="34" rx="2" fill="#1d4fd8" />
+    <text x="14" y="136" fontSize="11.5" fontWeight="600" fill="#ffffff" letterSpacing="0.5">CONTEXT</text>
+    <path d="M178 131 H 206" stroke="#94a3b8" strokeWidth="1.5" />
+    <path d="M206 131 l -6 -4 v 8 Z" fill="#94a3b8" />
+    <text x="218" y="136" fontSize="12" fill="#334155">local data to make the work relevant</text>
+    <rect x="0" y="156" width="168" height="34" rx="2" fill="#1d4fd8" />
+    <text x="14" y="178" fontSize="11.5" fontWeight="600" fill="#ffffff" letterSpacing="0.5">COMPETENCY</text>
+    <path d="M178 173 H 206" stroke="#94a3b8" strokeWidth="1.5" />
+    <path d="M206 173 l -6 -4 v 8 Z" fill="#94a3b8" />
+    <text x="218" y="178" fontSize="12" fill="#334155">skills to perform the work</text>
+    <rect x="0" y="202" width="680" height="0" fill="none" />
+    <text x="0" y="206" fontSize="11" fill="#b45309">Miss any one of the four and the graduates a region produces cannot capture value from the AI economy.</text>
+  </svg>
+</Figure>
 
 A region missing any one of the four cannot capture value from the AI economy
 regardless of how many graduates it produces. India, notably, is building
