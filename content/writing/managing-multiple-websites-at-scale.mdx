@@ -1,5 +1,5 @@
 ---
-title: "Managing Multiple Websites at Scale: How Businesses Can Centralize Content, SEO, and Analytics Without Rebuilding Every Site"
+title: "Managing Multiple Websites at Scale: Centralize Content, SEO and Analytics Without Rebuilding Every Site"
 date: "2026-09-26"
 stream: "field-notes"
 summary: "Why running one CMS per website gets operationally expensive as a business grows past two or three sites, and what a centralized content and operations layer changes without forcing every website into the same design."
@@ -18,7 +18,17 @@ adding the numbers up by hand.
 None of that is a technology failure exactly. Each individual site's CMS
 usually works fine on its own. The cost shows up in the seams between them.
 
-## The old model
+One disclosure before the argument, because it should change how you weigh it:
+I build this for a living. Every client project at Zobique Labs needed content
+management, SEO hygiene and analytics, and rebuilding those three things once per
+site is what pushed us to build a single internal platform instead of repeating
+the work. So I have a stake in the conclusion. What I can offer in exchange is
+that the argument comes from running the problem rather than from a category
+definition, and that [the technical post](/writing/multi-tenant-headless-cms-architecture)
+shows the actual build, down to the tenancy model and the webhook delivery, so you
+can judge the reasoning instead of taking my word for it.
+
+## The old model: one CMS per website
 
 The default way businesses end up here is entirely reasonable in the
 moment. Website A needs a CMS, so it gets one. Website B needs a CMS, so it
@@ -102,7 +112,7 @@ owns the standard across all of them. And every one of those installs adds
 a developer dependency: the moment a non-technical request goes past "edit
 this paragraph," someone has to be paid to touch code.
 
-## What centralizing does not mean
+## What centralizing does not mean: one template for every site
 
 The instinctive fix, one CMS, one template, every site forced onto it, is
 usually worse than the problem. A law firm's site and a product marketing
@@ -122,7 +132,7 @@ content from the shared layer through an API instead of storing its own
 copy. Nothing about that requires the site to look, or be built, like any
 other site on the same account.
 
-## Who actually has this problem
+## Who actually has this problem: agencies, multi-brand teams, universities
 
 This is not only a large-enterprise concern. It shows up wherever the same
 organization is responsible for more than two or three separately branded
@@ -142,7 +152,7 @@ or separately built websites:
   currently stitching together Search Console, Bing Webmaster, and GA4
   exports by hand for a single view of what is working.
 
-## What actually changes operationally
+## What actually changes operationally: publishing, SEO and reporting
 
 Three things change when content, SEO, and analytics move off per-site
 installs and onto one layer.
@@ -175,7 +185,7 @@ signed webhooks, the SEO and link engine, in
 [Multi-tenant headless CMS architecture](/writing/multi-tenant-headless-cms-architecture),
 which is the technical counterpart to this piece.
 
-## Why this is the direction, not just a preference
+## Why the cost of the old model stays hidden until it is large
 
 The old model does not fail loudly. Each site keeps working on its own,
 which is exactly why the cost stays hidden. It shows up later, as the
