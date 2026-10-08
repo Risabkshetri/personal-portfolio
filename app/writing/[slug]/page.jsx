@@ -57,8 +57,9 @@ export default async function PostPage({ params }) {
     description: summary,
     datePublished: new Date(date).toISOString(),
     dateModified: new Date(updated || date).toISOString(),
-    author: { "@type": "Person", name: site.name, url: site.url },
+    author: { "@type": "Person", name: site.name, url: `${site.url}/about` },
     publisher: { "@type": "Person", name: site.name },
+    image: [`${site.url}/writing/${post.slug}/opengraph-image`],
     mainEntityOfPage: `${site.url}/writing/${post.slug}`,
   };
 
@@ -78,6 +79,13 @@ export default async function PostPage({ params }) {
           {title}
         </h1>
         <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-secondary">
+          <span>
+            By{" "}
+            <Link href="/about" className="text-accent hover:text-accent-dark">
+              {site.name}
+            </Link>
+          </span>
+          <span className="text-black-100/30">·</span>
           <time dateTime={new Date(date).toISOString()}>{fmt(date)}</time>
           <span className="text-black-100/30">·</span>
           <span>{post.readingTime}</span>
