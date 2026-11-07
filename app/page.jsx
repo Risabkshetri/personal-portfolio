@@ -8,6 +8,7 @@ import ProofTile from "../components/ProofTile";
 import DeploymentCard from "../components/DeploymentCard";
 import PostCard from "../components/PostCard";
 import JsonLd from "../components/JsonLd";
+import FounderCardDrawer from "../components/FounderCardDrawer";
 
 const proof = [
   {
@@ -71,6 +72,7 @@ export default function HomePage() {
             >
               Contact
             </Link>
+            <FounderCardDrawer className="inline-flex w-full items-center justify-center gap-2 border border-black-100/20 px-6 py-3 font-medium text-black-100 transition-colors hover:border-accent hover:text-accent sm:w-auto" />
           </div>
         </div>
 
