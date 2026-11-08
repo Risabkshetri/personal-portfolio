@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2275e2"/>
+      <stop offset="1" stop-color="#1450b9"/>
+    </linearGradient>
+  </defs>
+  <!-- The "D" tile from the logo -->
+  <path fill="url(#g)" d="M8 3h24a28 28 0 0 1 28 28v22a8 8 0 0 1-8 8H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Z"/>
+  <!-- Doctor -->
+  <circle cx="25" cy="20" r="8" fill="#fff"/>
+  <path fill="#fff" d="M10 47c0-9.5 6.7-15 15-15s15 5.5 15 15a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2Z"/>
+  <!-- Verified tick -->
+  <path fill="none" stroke="#fff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" d="M30 46.5l8.5 8.5L55 38"/>
+  <path fill="none" stroke="#10c29d" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" d="M30 46.5l8.5 8.5L55 38"/>
+</svg>

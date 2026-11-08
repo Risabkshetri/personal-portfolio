@@ -2,7 +2,7 @@ import { styles } from "../../lib/styles";
 import { site } from "../../lib/site";
 import { getAllDeployments } from "../../lib/content";
 import PageHeader from "../../components/PageHeader";
-import DeploymentCard from "../../components/DeploymentCard";
+import DeploymentsExplorer from "../../components/DeploymentsExplorer";
 import Breadcrumbs from "../../components/Breadcrumbs";
 
 const title = "Deployments";
@@ -35,11 +35,7 @@ export default function DeploymentsPage() {
         </p>
       </PageHeader>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {deployments.map((d) => (
-          <DeploymentCard key={d.slug} {...d} />
-        ))}
-      </div>
+      <DeploymentsExplorer items={deployments} />
     </div>
   );
 }

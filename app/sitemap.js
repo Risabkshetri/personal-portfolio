@@ -5,12 +5,12 @@ import { getAllPosts, getAllDeployments } from "../lib/content";
 // the date its content was last actually edited (from git history) rather
 // than `new Date()`, which reported "changed right now" on every crawl.
 const STATIC_ROUTE_UPDATED = {
-  "": "2026-09-07",
-  "/deployments": "2026-09-06",
+  "": "2026-11-08",
+  "/deployments": "2026-11-08",
   "/writing": "2026-09-06",
   "/now": "2026-09-07",
   "/about": "2026-09-07",
-  "/contact": "2026-09-07",
+  "/contact": "2026-11-08",
 };
 
 export default function sitemap() {

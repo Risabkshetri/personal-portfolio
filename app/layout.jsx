@@ -36,9 +36,9 @@ export const metadata = {
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   icons: {
-    icon: [{ url: "/favicon.jpeg", type: "image/jpeg" }],
-    shortcut: "/favicon.jpeg",
-    apple: "/favicon.jpeg",
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    shortcut: "/favicon.png",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     type: "website",

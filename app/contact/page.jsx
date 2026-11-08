@@ -2,6 +2,7 @@ import { styles } from "../../lib/styles";
 import { site } from "../../lib/site";
 import PageHeader from "../../components/PageHeader";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import BookCall from "../../components/BookCall";
 
 const title = "Contact";
 const description =
@@ -29,9 +30,9 @@ const segments = [
     heading: "Potential customers",
     body: "You need automation for a process that mostly lives in people's heads, WhatsApp, and spreadsheets. That's the work Zobique Labs does. Start with a call or a note about the process you want to fix.",
     actions: [
-      { label: "Book a discovery call", href: site.discoveryCall, external: true },
       { label: "Zobique Labs", href: site.org.labs, external: true },
     ],
+    booking: true,
   },
   {
     heading: "Investors & programs",
@@ -45,7 +46,11 @@ export default function ContactPage() {
     <div className={`${styles.container} py-16 sm:py-24`}>
       <Breadcrumbs items={[{ label: "Contact", href: "/contact" }]} />
       <PageHeader kicker="Different asks, different framing" title="Contact">
-        <p>Pick the row that fits. Direct email is always fine: {" "}
+        <p>Pick the row that fits. To book a one-hour consultation directly, use{" "}
+          <a href={site.booking.url} className="text-accent hover:text-accent-dark">
+            my booking page
+          </a>
+          . Direct email is always fine: {" "}
           <a href={`mailto:${site.email}`} className="text-accent hover:text-accent-dark">
             {site.email}
           </a>
@@ -78,6 +83,13 @@ export default function ContactPage() {
                   {a.label}
                 </a>
               ))}
+              {s.booking && (
+                <BookCall
+                  className="inline-flex items-center border border-transparent bg-accent px-4 py-2 text-[14px] font-medium text-white transition-colors hover:bg-accent-dark"
+                >
+                  Schedule a consultation
+                </BookCall>
+              )}
             </div>
           </div>
         ))}

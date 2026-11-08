@@ -1,0 +1,70 @@
+---
+title: "Bizowl: rebuilding an outgrown product as a modular platform"
+client: "Bizowl"
+status: "live"
+updated: "2026-11-08"
+order: 6
+featured: false
+constraint: "Bizowl's first product had hit a ceiling. It was hard to extend, it lacked structure, and users were not sure what the platform was for or where to go next."
+outcome: "A modular platform with Bizowl's marketplace module live on it, existing client and partner data migrated across, and a navigation that tells people where they are."
+stack:
+  - "Modular platform architecture"
+  - "Marketplace module"
+  - "Data migration"
+links:
+  - label: "Bizowl (live)"
+    href: "https://bizzowl.com"
+  - label: "Zobique case study"
+    href: "https://zobique.com/case-studies/bizowl"
+---
+
+## The constraint
+
+Bizowl is building a startup operating system for India: one place where
+founders can find services, people and resources. Its first product was built
+on React, Node.js and Firebase, and it did the job for a while. Then the idea
+grew faster than the code did.
+
+Adding anything meant fighting the structure, because there was not much
+structure to work with. And the product had a second problem, one that no
+amount of refactoring fixes: a new user could land on it and not be sure what
+Bizowl was for or what to do next.
+
+I do not think of a rebuild as a technical problem first. The first job was to
+sit with the founder and understand what Bizowl was meant to become, because a
+platform rebuilt around the wrong idea is just a cleaner version of the wrong
+thing.
+
+## What I built
+
+We moved Bizowl onto a modular platform: a set of reusable core services, so
+that new parts of the product plug in instead of being forced in. I chose the
+stack for how well it would hold up over years of change, not for how quickly it
+would demo.
+
+On top of that foundation I built the marketplace module, and gave it a clear
+job inside the wider Bizowl ecosystem. I redesigned the navigation around one
+question, "where am I and where can I go?", and migrated the existing client
+and partner data so nobody had to start again.
+
+The order mattered: understand the vision, design the foundation, ship the
+marketplace, then migrate the data. Migrating first would have meant moving data
+into a structure we had not finished deciding.
+
+{/* TODO(rishab): add "What broke". The source case study has no failure modes in
+it, so I have not invented any. The data migration is the most likely place
+there is a real story (mapping old records to the new structure, anything that
+did not survive cleanly). Also name the new stack if you are happy to. */}
+
+## Outcome
+
+The marketplace module is live on the new platform, the existing data is
+migrated, and the experience is clearer for the people using it. I do not have
+numbers to put next to that, and I would rather say so than invent them.
+
+## Links
+
+You can see the module running at
+[bizzowl.com](https://bizzowl.com), and the
+[Zobique case study](https://zobique.com/case-studies/bizowl) has the client's
+side of it.
