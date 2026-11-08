@@ -1,0 +1,79 @@
+---
+title: "Ace10x: a native affiliate system to replace a paid platform"
+client: "Ace10x"
+status: "live"
+updated: "2026-11-08"
+order: 5
+featured: false
+constraint: "Ace10x needed to manage partners, track referrals and pay commissions. The affiliate platforms on the market did that, but they came with features Ace10x would never use and a monthly bill on top."
+outcome: "The affiliate system now runs inside Ace10x's own application, live in production, with referral tracking at 99% accuracy and no separate platform for the core workflow."
+stack:
+  - "Django"
+  - "PostgreSQL"
+  - "Redis"
+links:
+  - label: "Zobique case study"
+    href: "https://zobique.com/case-studies/ace10x"
+  - label: "Zobique Labs"
+    href: "https://labs.zobique.com"
+---
+
+## The constraint
+
+Ace10x runs on partners. People refer customers, those referrals convert, and
+the partners get paid a commission. Somebody has to track all of that, and get
+it right, because the moment a partner's numbers look wrong, they stop trusting
+you.
+
+The obvious answer is to buy an affiliate platform, and Ace10x had looked at
+them. The problem was the fit. They were built for every business at once, so
+Ace10x would be paying, month after month, for features it had no use for. The
+tools we looked at were in the range of $50 to $100 a month, and that is before
+you account for working around the parts that do not match how you operate.
+
+So the question I took on was a narrower one than "build an affiliate platform":
+what is the smallest system that does exactly what Ace10x needs, and can it live
+inside the product they already have?
+
+## What I built
+
+I started by studying how affiliate software actually works, then cut it down to
+the functions Ace10x depends on, and built those as a native module inside their
+existing Django application, on PostgreSQL and Redis.
+
+- **Referral and conversion tracking.** Every referral is recorded and tied to
+  the partner who brought it.
+- **A commission ledger.** Commissions are entries in a ledger, not a number
+  recalculated on the fly, so any figure can be traced back to the events behind
+  it.
+- **Partner management and a partner dashboard.** Partners can see their own
+  referrals and earnings without asking anyone.
+- **Payouts and reporting.** The team can see performance and run payouts from
+  the same place.
+- **Fraud flagging.** Suspicious patterns get surfaced for a person to look at
+  instead of being paid out silently.
+
+Building it inside their application, rather than beside it, was a deliberate
+choice. There is no second login, no sync job between two systems, and no
+separate vendor to depend on.
+
+{/* TODO(rishab): add "What broke". The source case study has no failure modes
+in it, so I have not invented any. Two or three real ones from the build
+(tracking edge cases, ledger corrections, fraud false positives) would make this
+section the strongest part of the page. */}
+
+## Outcome
+
+The system is live in production. Referral tracking is running at 99% accuracy,
+and Ace10x no longer needs a separate third-party platform for its core
+affiliate workflows.
+
+On the money: I will not claim a saving I cannot stand behind. The monthly fees
+of the paid platforms are gone, but a system you own still has development,
+hosting and maintenance behind it, so the real net figure depends on those.
+What is not in doubt is that Ace10x owns the system and it fits how they work.
+
+## Links
+
+The [Zobique case study](https://zobique.com/case-studies/ace10x) has the
+client's side of it.

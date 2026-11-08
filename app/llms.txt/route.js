@@ -13,7 +13,7 @@ export function GET() {
   const lines = [
     `# ${site.name}`,
     "",
-    "> Technical founder. Built a job-matching and skill-gap engine that is",
+    "> Founder of Zobique and CTO of DoctorRating. Built a job-matching and skill-gap engine that is",
     "> integrated with India's National Career Service (NCS). Runs Zobique Labs,",
     "> an AI automation studio whose agents run in production inside real businesses.",
     "> Final-year B.Tech CSE",
@@ -37,7 +37,9 @@ export function GET() {
     `- [GitHub](${site.socials.github})`,
     `- [LinkedIn](${site.socials.linkedin})`,
     `- [India Today feature](${site.indiaToday})`,
-    `- [Contact](mailto:${site.email})`,
+    `- [Contact](${site.url}/contact)`,
+    `- [Book a consultation (1 hour, Cal.com)](${site.booking.url})`,
+    `- [Email](mailto:${site.email})`,
     "",
     "## Deployments",
     ...deployments.map(
