@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Rss } from "lucide-react";
 import { styles } from "../lib/styles";
 import { site, personLd, websiteLd } from "../lib/site";
 import { getAllDeployments, getAllPosts } from "../lib/content";
@@ -49,9 +49,21 @@ export default function HomePage() {
       {/* Positioning */}
       <section className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div className="max-w-2xl">
-          <h1 className={styles.heroHeadText}>
-            Rishab <span className="text-accent">Chhetri</span>
-          </h1>
+          <div className="relative inline-block">
+            <h1 className={styles.heroHeadText}>
+              Rishab <span className="text-accent">Chhetri</span>
+            </h1>
+            <a
+              href="/feed.xml"
+              target="_blank"
+              rel="noopener"
+              aria-label="RSS feed"
+              title="RSS feed"
+              className="absolute -right-8 -top-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-black text-accent transition-transform hover:scale-110"
+            >
+              <Rss size={14} strokeWidth={3} />
+            </a>
+          </div>
           <p className={`${styles.heroSubText} mt-6`}>
             I build AI systems that get deployed. The job-matching and skill-gap
             engine I built is integrated with India&rsquo;s National Career
@@ -76,15 +88,15 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="shrink-0 self-center md:self-start">
+        <div className="shrink-0 self-center">
           <Image
-            src="/rishab.png"
+            src="/rishab-profile.jpg"
             alt="Rishab Chhetri"
-            width={200}
-            height={200}
+            width={400}
+            height={400}
             priority
-            sizes="(min-width: 640px) 200px, 160px"
-            className="h-[160px] w-[160px] rounded-full border border-black-100/10 object-cover grayscale sm:h-[200px] sm:w-[200px]"
+            sizes="(min-width: 640px) 260px, 200px"
+            className="h-[200px] w-[200px] rounded-full border border-black-100/10 object-cover object-[50%_25%] grayscale transition-[filter] duration-500 hover:grayscale-0 sm:h-[260px] sm:w-[260px]"
           />
         </div>
       </section>
