@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { FOUNDER_CARD_LINKS } from "../lib/founderCardLinks";
 import { Download, IdCard, Minus, Plus, RotateCcw, X } from "lucide-react";
 
 const PAGES = ["/founder-card/page-1.webp", "/founder-card/page-2.webp"];
@@ -22,6 +23,7 @@ export default function FounderCardDrawer({ className = "" }) {
 
   const onPointerDown = (e) => {
     if (e.pointerType !== "mouse" || e.button !== 0 || zoom <= 1) return;
+    if (e.target.closest("a")) return;
     const el = scrollRef.current;
     drag.current = { x: e.clientX, y: e.clientY, l: el.scrollLeft, t: el.scrollTop };
     el.setPointerCapture(e.pointerId);
@@ -186,6 +188,7 @@ export default function FounderCardDrawer({ className = "" }) {
                 onPointerUp={endDrag}
                 onPointerCancel={endDrag}
                 onDoubleClick={(e) => {
+                  if (e.target.closest("a")) return;
                   const r = scrollRef.current.getBoundingClientRect();
                   zoomTo((z) => (z > 1 ? 1 : 2), e.clientX - r.left, e.clientY - r.top);
                 }}
@@ -195,16 +198,28 @@ export default function FounderCardDrawer({ className = "" }) {
                   style={{ width: `${zoom * 100}%`, minWidth: "100%" }}
                 >
                   {PAGES.map((src, i) => (
-                    <img
-                      key={src}
-                      src={src}
-                      alt={`Founder card, page ${i + 1} of ${PAGES.length}`}
-                      draggable={false}
-                      className={`block w-full select-none rounded-lg shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_10px_30px_-10px_rgba(0,0,0,0.9)] ring-1 ring-white/10 transition-[opacity,transform] duration-700 ease-out ${
-                        visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                      }`}
-                      style={{ transitionDelay: `${150 + i * 120}ms` }}
-                    />
+                    <div key={src} className="relative">
+                      <img
+                        src={src}
+                        alt={`Founder card, page ${i + 1} of ${PAGES.length}`}
+                        draggable={false}
+                        className={`block w-full select-none rounded-lg shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_10px_30px_-10px_rgba(0,0,0,0.9)] ring-1 ring-white/10 transition-[opacity,transform] duration-700 ease-out ${
+                          visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                        }`}
+                        style={{ transitionDelay: `${150 + i * 120}ms` }}
+                      />
+                      {FOUNDER_CARD_LINKS[i].map(([l, t, w, h, href]) => (
+                        <a
+                          key={`${href}-${l}-${t}`}
+                          href={href}
+                          target={href.startsWith("mailto:") ? undefined : "_blank"}
+                          rel="noopener noreferrer"
+                          aria-label={href}
+                          className="absolute cursor-pointer rounded-sm transition-colors hover:bg-white/10"
+                          style={{ left: `${l}%`, top: `${t}%`, width: `${w}%`, height: `${h}%` }}
+                        />
+                      ))}
+                    </div>
                   ))}
                 </div>
               </div>
