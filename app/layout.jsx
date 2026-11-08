@@ -28,7 +28,7 @@ const newsreader = Newsreader({
 export const metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name}: AI systems that get deployed`,
+    default: site.title,
     template: `%s · ${site.name}`,
   },
   description: site.shortBio,
@@ -44,13 +44,13 @@ export const metadata = {
     type: "website",
     siteName: site.name,
     url: site.url,
-    title: `${site.name}: AI systems that get deployed`,
+    title: site.title,
     description: site.shortBio,
   },
   twitter: {
     card: "summary_large_image",
     creator: "@risab_kshetri",
-    title: `${site.name}: AI systems that get deployed`,
+    title: site.title,
     description: site.shortBio,
   },
   robots: { index: true, follow: true },
