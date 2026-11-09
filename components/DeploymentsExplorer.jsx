@@ -45,7 +45,7 @@ export default function DeploymentsExplorer({ items }) {
       <aside className="sticky top-[60px] z-20 -mx-6 border-b border-black-100/10 bg-primary/95 px-6 backdrop-blur-sm sm:-mx-16 sm:px-16 lg:top-[84px] lg:mx-0 lg:self-start lg:border-b-0 lg:bg-transparent lg:px-0 lg:backdrop-blur-none">
         <ul
           ref={listRef}
-          className="flex gap-2 overflow-x-auto py-3 lg:flex-col lg:gap-1 lg:overflow-visible lg:border-l lg:border-black-100/10 lg:py-0"
+          className="flex gap-2 overflow-x-auto overscroll-x-contain py-3 [scrollbar-width:none] lg:flex-col lg:gap-1 lg:overflow-visible lg:border-l lg:border-black-100/10 lg:py-0"
         >
           {items.map((d) => {
             const on = d.slug === active;
@@ -62,7 +62,7 @@ export default function DeploymentsExplorer({ items }) {
                       : "border-black-100/15 text-secondary hover:text-black-100 lg:border-transparent"
                   }`}
                 >
-                  <span className="block max-w-[220px] whitespace-nowrap text-[14px] font-medium leading-snug lg:max-w-none lg:whitespace-normal lg:text-[15px]">
+                  <span className="block whitespace-nowrap text-[14px] font-medium leading-snug lg:whitespace-normal lg:text-[15px]">
                     {d.frontmatter.title}
                   </span>
                   <span className="mt-0.5 hidden text-[12px] text-secondary lg:block">
